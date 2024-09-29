@@ -7,20 +7,34 @@
   <ion-content class="ion-padding">This is the menu content.</ion-content>
 </ion-menu>
 <div class="ion-page" id="main-content">
-  <ion-header>
+
+  <div class="bg-gray-800 home">
     <ion-toolbar>
       <ion-buttons slot="start">
-        <ion-menu-button></ion-menu-button>
+        <ion-menu-button color="light"></ion-menu-button>
       </ion-buttons>
-      <ion-title>Menu</ion-title>
+      <div class="flex items-center gap-1 pr-2">
+        <ion-searchbar placeholder="Buscar" ></ion-searchbar>
+        <ion-icon name="cart-outline" size="large" color="light"></ion-icon>
+      </div>
     </ion-toolbar>
-  </ion-header>
-  <ion-content color="light">
-    <div>
-      <img src="https://www.anahuac.mx/mexico/sites/default/files/styles/webp/public/noticias/Los-colores-que-utilizamos-en-la-ropa-dicen-como-somos.jpg.webp?itok=k3GFCGkN" alt="">
+    <div class="flex justify-center">
+      <ion-chip>Patalones</ion-chip>
+      <ion-chip>Blusas</ion-chip>
+      <ion-chip>Faldas</ion-chip>
+      <ion-chip>Shorts</ion-chip>
+      <ion-chip>Pants</ion-chip>
     </div>
+  </div>
+
+
+
+  <ion-content color="light">
+
     <div class="ion-padding">
 
     </div>
   </ion-content>
+
+
 </div>
