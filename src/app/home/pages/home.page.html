@@ -8,13 +8,13 @@
 </ion-menu>
 <div class="ion-page" id="main-content">
 
-  <div class="bg-gray-800 home">
+  <div class="home">
     <ion-toolbar>
       <ion-buttons slot="start">
         <ion-menu-button color="light"></ion-menu-button>
       </ion-buttons>
       <div class="flex items-center gap-1 pr-2">
-        <ion-searchbar placeholder="Buscar" ></ion-searchbar>
+        <ion-searchbar placeholder="Buscar"></ion-searchbar>
         <ion-icon name="cart-outline" size="large" color="light"></ion-icon>
       </div>
     </ion-toolbar>
@@ -25,6 +25,23 @@
       <ion-chip>Shorts</ion-chip>
       <ion-chip>Pants</ion-chip>
     </div>
+
+    <div class="mx-5">
+      <p-carousel [value]="products" [numVisible]="3" [numScroll]="3" [circular]="true" [showIndicators]="false" [showNavigators]="false" [autoplayInterval]="3000">
+        <ng-template let-product pTemplate="item">
+            <div class="bg-gray-900  pt-2 pb-1 rounded-md overflow-auto mt-3 mx-1 h-36 card">
+              <div class="h-full flex justify-center">
+                <img [src]="product.image" alt="" class="h-full rounded-md">
+              </div>
+              <div class="fixed bottom-1">
+                <p class="text-sm bg-white text-gray-600 rounded-md py-0.5 px-1 font-semibold">$MXN{{ product.price }}</p>
+              </div>
+            </div>
+        </ng-template>
+      </p-carousel>
+    </div>
+
+
   </div>
 
 

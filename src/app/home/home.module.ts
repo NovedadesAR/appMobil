@@ -6,13 +6,15 @@ import { FormsModule } from '@angular/forms';
 import { HomePageRoutingModule } from './home-routing.module';
 import { HomePage } from './pages/home.page';
 
+import { CarouselModule } from 'primeng/carousel';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    HomePageRoutingModule
+    HomePageRoutingModule,
+    CarouselModule,
   ],
   declarations: [HomePage]
 })
