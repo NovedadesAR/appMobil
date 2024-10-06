@@ -8,6 +8,7 @@ import { HomePage } from './pages/home.page';
 
 import { CarouselModule } from 'primeng/carousel';
 
+
 @NgModule({
   imports: [
     CommonModule,
@@ -16,6 +17,9 @@ import { CarouselModule } from 'primeng/carousel';
     HomePageRoutingModule,
     CarouselModule,
   ],
-  declarations: [HomePage]
+  declarations: [
+    HomePage,
+
+  ]
 })
 export class HomePageModule {}

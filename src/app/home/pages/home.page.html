@@ -7,51 +7,77 @@
   <ion-content class="ion-padding">This is the menu content.</ion-content>
 </ion-menu>
 <div class="ion-page" id="main-content">
-
   <div class="home">
     <ion-toolbar>
-      <ion-buttons slot="start">
-        <ion-menu-button color="light"></ion-menu-button>
-      </ion-buttons>
-      <div class="flex items-center gap-1 pr-2">
-        <ion-searchbar placeholder="Buscar"></ion-searchbar>
-        <ion-icon name="cart-outline" size="large" color="light"></ion-icon>
+      <div class="flex items-center justify-between gap-1 pr-2">
+        <ion-buttons slot="start">
+          <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+        <h1 class="font-bold text-2xl title">Novedades A&R</h1>
+        <ion-icon name="cart-outline" size="large"></ion-icon>
       </div>
+      <ion-searchbar placeholder="Buscar"></ion-searchbar>
     </ion-toolbar>
-    <div class="flex justify-center">
-      <ion-chip>Patalones</ion-chip>
-      <ion-chip>Blusas</ion-chip>
-      <ion-chip>Faldas</ion-chip>
-      <ion-chip>Shorts</ion-chip>
-      <ion-chip>Pants</ion-chip>
-    </div>
-
-    <div class="mx-5">
-      <p-carousel [value]="products" [numVisible]="3" [numScroll]="3" [circular]="true" [showIndicators]="false" [showNavigators]="false" [autoplayInterval]="3000">
-        <ng-template let-product pTemplate="item">
-            <div class="bg-gray-900  pt-2 pb-1 rounded-md overflow-auto mt-3 mx-1 h-36 card">
-              <div class="h-full flex justify-center">
-                <img [src]="product.image" alt="" class="h-full rounded-md">
-              </div>
-              <div class="fixed bottom-1">
-                <p class="text-sm bg-white text-gray-600 rounded-md py-0.5 px-1 font-semibold">$MXN{{ product.price }}</p>
-              </div>
-            </div>
-        </ng-template>
-      </p-carousel>
-    </div>
-
-
   </div>
+  <ion-content>
+    <div class="slider">
+      <div class="slider-inner" id="slider" #slider>
+        <img src="../../../assets/images/portadafn.webp" alt="">
+        <img
+          src="https://www.anahuac.mx/mexico/sites/default/files/styles/webp/public/noticias/Los-colores-que-utilizamos-en-la-ropa-dicen-como-somos.jpg.webp?itok=k3GFCGkN"
+          alt="">
+        <img
+          src="https://st3.depositphotos.com/9747634/32010/i/450/depositphotos_320104748-stock-photo-hangers-with-different-clothes-in.jpg"
+          alt="">
+        <img src="https://d1ih8jugeo2m5m.cloudfront.net/2024/08/ideas_para_tienda_de_ropa_infantil-1200x685.jpg" alt="">
+      </div>
+    </div>
+    <div class="">
+
+      <h2 class="text-center my-3 font-bold text-4xl underline">Lo mas vendido</h2>
+
+      <div class="container-vendido mx-5">
+        <div *ngFor="let item of products" class="vendido">
+          <img [src]="item.image" alt="" class="h-64 w-full">
+          <div class="">
+            <button class="w-full btncard flex gap-1 items-center px-1 py-2">
+              <ion-icon name="cart-outline"></ion-icon>
+              Añadir a mi carrito
+            </button>
+            <strong>
+              ${{ item.price }}.00
+            </strong>
+          </div>
+        </div>
+      </div>
 
 
 
-  <ion-content color="light">
 
-    <div class="ion-padding">
+      <h2 class="text-center my-3 font-bold text-4xl underline">Descubre</h2>
+      <div class="flex justify-center py-2 rounded-md flex-col gap-5">
+        <div *ngFor="let item of products">
+          <img [src]="item.image" alt="">
+        </div>
+      </div>
+
+
+      <h2 class="text-center my-3 font-bold text-4xl text-red-700 underline">Rebajas</h2>
+      <div class="flex justify-center">
+        <div class="grid grid-cols-2 gap-y-2">
+          <div *ngFor="let item of products" class="flex flex-col">
+            <div class="h-80 md:h-full overflow-hidden">
+              <img [src]="item.image" [alt]="item.name" class="h-full">
+            </div>
+            <span class="flex gap-2 text-lg">
+              <strong class="text-blue-950">${{ item.price }}.00</strong>
+              <strong class="line-through text-gray-600">$999.00</strong>
+            </span>
+          </div>
+        </div>
+      </div>
+
 
     </div>
   </ion-content>
-
-
 </div>
