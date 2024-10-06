@@ -1,4 +1,4 @@
-# Aplicación Móvil de Novedades A&R
+# Aplicación Móvil de Novedades A&R :D
 
 La aplicación móvil de **Novedades A&R** está diseñada para facilitar la experiencia de compra de ropa para dama y caballero. Esta aplicación permitirá a los usuarios navegar a través de una lista de productos, gestionar su cuenta y realizar compras de manera sencilla y segura.
 
