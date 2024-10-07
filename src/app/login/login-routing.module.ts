@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginPageComponent } from './pages/login-page/login-page.component';
+import { CrearCuentaPage } from './pages/crear-cuenta/crear-cuenta.page';
 
 const routes: Routes = [
   {
@@ -12,6 +13,11 @@ const routes: Routes = [
     redirectTo: '/home',
     pathMatch: 'full',
   },
+  {
+    path: 'crear-cuenta',
+    component:CrearCuentaPage
+  },
+
 ];
 
 @NgModule({
