@@ -13,15 +13,15 @@ const routes: Routes = [
         component: HomePage
       },
       {
+        path:'profileModule',
+        loadChildren: () => import('../profile/profile.module').then(m => m.ProfileModule)
+      },
+      {
         path:'loginModule',
         loadChildren: () => import('../login/login.module').then(m => m.LoginModule)
       },
       {
         path:'productsModule',
-        loadChildren: () => import('../login/login.module').then(m => m.LoginModule)
-      },
-      {
-        path:'profileModule',
         loadChildren: () => import('../login/login.module').then(m => m.LoginModule)
       },
       {
