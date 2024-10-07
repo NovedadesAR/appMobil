@@ -9,4 +9,5 @@ export class CrearCuentaPage{
 
   constructor() { }
 
+  public isNext:boolean = false;
 }

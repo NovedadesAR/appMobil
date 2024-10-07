@@ -2,15 +2,92 @@
   <ion-buttons>
     <ion-button class="capitalize" routerLink="/loginModule/login">
       <ion-icon name="arrow-back-outline" slot="start"></ion-icon>
-      Crear cuenta
+      Registrate
     </ion-button>
   </ion-buttons>
 </ion-toolbar>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">crear-cuenta</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content [fullscreen]="true" class="ion-padding">
+  <h2 class="text-xl text-gray-800 font-bold mb-2">Regístrate</h2>
+  <div class="container-cuenta">
+    <form>
+      <div [class.toggle]="isNext">
+        <ion-item>
+          <ion-label position="stacked"><span>Nombre</span></ion-label>
+          <ion-input></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked"
+            ><span>Apellido Paterno</span></ion-label
+          >
+          <ion-input></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked"
+            ><span>Apellido materno</span></ion-label
+          >
+          <ion-input></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-select label="Genero" label-placement="Genero">
+            <ion-select-option value="apple">Hombre</ion-select-option>
+            <ion-select-option value="banana">Mujer</ion-select-option>
+          </ion-select>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked"
+            ><span>Fecha de nacimiento</span></ion-label
+          >
+          <input type="date" class="w-full" />
+        </ion-item>
+        <div class="mt-2">
+          <ion-button color="dark" class="w-full" (click)="isNext = true"
+            >Siguiente</ion-button
+          >
+        </div>
+      </div>
+      <div [class.next]="!isNext" class="absolute top-0 w-full">
+        <ion-item>
+          <ion-label position="stacked"
+            ><span>Correo electronico</span></ion-label
+          >
+          <ion-input type="email"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked"
+            ><span>Numero de telefono</span></ion-label
+          >
+          <ion-input type="tel"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked"><span>Contraseña</span></ion-label>
+          <ion-input type="password"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked">
+            <span>Repita contraseña</span>
+          </ion-label>
+          <ion-input type="password"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-select label="Pregunta secreta" label-placement="Pregunta secreta">
+            <ion-select-option value="apple">Comida favorita</ion-select-option>
+            <ion-select-option value="banana">Color favorito</ion-select-option>
+          </ion-select>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked"><span>Respuesta</span></ion-label>
+          <ion-input></ion-input>
+        </ion-item>
+        <div class="mt-2">
+          <ion-button color="dark" (click)="isNext = false" fill="outline"
+            >Anterior</ion-button
+          >
+          <ion-button color="dark" (click)="isNext = true"
+            >Confirmar</ion-button
+          >
+        </div>
+      </div>
+    </form>
+  </div>
 </ion-content>
