@@ -1,0 +1,86 @@
+<ion-toolbar class="pt-2">
+  <ion-searchbar placeholder="Buscar"></ion-searchbar>
+</ion-toolbar>
+<ion-content class="ion-padding">
+  <h2 class="text-3xl text-gray-800 font-bold">Mi cuenta</h2>
+  <div class="mt-2 text-gray-900">
+    <p>Inicia sesion para poder acceder a tu cuenta y mas funciones.</p>
+  </div>
+
+  <form class="container-form mt-5 pb-5 py-2">
+    <ion-item>
+      <ion-label position="stacked"
+        ><span class="text-xl">Correo electronico</span></ion-label
+      >
+      <ion-input type="email" placeholder="example@gmail.com"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked"
+        ><span class="text-xl">Contraseña</span></ion-label
+      >
+      <ion-input type="password" placeholder="examplePass123"></ion-input>
+    </ion-item>
+    <div class="px-2 py-3">
+
+      <ion-button color="dark" fill="outline">
+        Iniciar sesion
+      </ion-button>
+      <ion-button color="medium">
+        Registrate
+      </ion-button>
+    </div>
+    <div class="px-2 text-center">
+      <a href="#" class="text-blue-950">¿Olvidaste tu contraseña?</a>
+    </div>
+  </form>
+
+  <div class="mt-5">
+    <h3 class="text-xl text-gray-800 font-bold">Ayuda</h3>
+    <ion-accordion-group class="mt-2">
+      <ion-accordion value="first">
+        <ion-item slot="header" color="light">
+          <ion-label>Olvide mi contraseña</ion-label>
+        </ion-item>
+        <div class="ion-padding" slot="content">
+          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Soluta
+          fugiat totam quibusdam harum exercitationem aspernatur reprehenderit,
+          eaque voluptatum perspiciatis ad cumque officiis quisquam nobis hic
+          eius error ab suscipit veritatis.
+        </div>
+      </ion-accordion>
+      <ion-accordion value="second">
+        <ion-item slot="header" color="light">
+          <ion-label>¿Como crear una cuenta?</ion-label>
+        </ion-item>
+        <div class="ion-padding" slot="content">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda
+          quibusdam, consectetur delectus qui deleniti autem perspiciatis, ipsum
+          quidem excepturi ea modi optio ullam unde repellendus eum, dicta
+          voluptatum voluptate? Ab?
+        </div>
+      </ion-accordion>
+      <ion-accordion value="third">
+        <ion-item slot="header" color="light">
+          <ion-label>¿Como comprar un producto?</ion-label>
+        </ion-item>
+        <div class="ion-padding" slot="content">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta, vitae
+          nesciunt! Atque ex asperiores consequatur quisquam qui temporibus
+          itaque ab, ratione veritatis nisi eligendi eum ipsam, rem nesciunt,
+          vero saepe!
+        </div>
+      </ion-accordion>
+      <ion-accordion value="four">
+        <ion-item slot="header" color="light">
+          <ion-label>¿Como se rastreo un pedido?</ion-label>
+        </ion-item>
+        <div class="ion-padding" slot="content">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta, vitae
+          nesciunt! Atque ex asperiores consequatur quisquam qui temporibus
+          itaque ab, ratione veritatis nisi eligendi eum ipsam, rem nesciunt,
+          vero saepe!
+        </div>
+      </ion-accordion>
+    </ion-accordion-group>
+  </div>
+</ion-content>
