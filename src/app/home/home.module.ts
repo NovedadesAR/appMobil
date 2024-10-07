@@ -4,9 +4,10 @@ import { IonicModule } from '@ionic/angular';
 import { FormsModule } from '@angular/forms';
 
 import { HomePageRoutingModule } from './home-routing.module';
-import { HomePage } from './pages/home.page';
+import { HomePage } from './pages/homeComponent/home.page';
 
 import { CarouselModule } from 'primeng/carousel';
+import { TabNavigationComponent } from './pages/tab-navigation/tab-navigation.component';
 
 
 @NgModule({
@@ -19,6 +20,7 @@ import { CarouselModule } from 'primeng/carousel';
   ],
   declarations: [
     HomePage,
+    TabNavigationComponent,
 
   ]
 })

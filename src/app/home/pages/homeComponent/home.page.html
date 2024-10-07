@@ -1,73 +1,64 @@
-<ion-menu contentId="main-content">
-  <ion-header>
-    <ion-toolbar>
-      <ion-title>Menu Content</ion-title>
-    </ion-toolbar>
-  </ion-header>
-  <ion-content class="ion-padding">This is the menu content.</ion-content>
-</ion-menu>
+
 <div class="ion-page" id="main-content">
   <div class="home">
     <ion-toolbar>
-      <div class="flex items-center justify-between gap-1 pr-2">
-        <ion-buttons slot="start">
-          <ion-menu-button></ion-menu-button>
-        </ion-buttons>
-        <h1 class="font-bold text-2xl title">Novedades A&R</h1>
-        <ion-icon name="cart-outline" size="large"></ion-icon>
+      <div class="text-center mt-4">
+        <h1 class="font-bold text-3xl title">Novedades A&R</h1>
       </div>
-      <ion-searchbar placeholder="Buscar"></ion-searchbar>
+      <ion-searchbar placeholder="Buscar" class="mb-2"></ion-searchbar>
     </ion-toolbar>
   </div>
   <ion-content>
     <div class="slider">
       <div class="slider-inner" id="slider" #slider>
-        <img src="../../../assets/images/portadafn.webp" alt="">
+        <img src="../../../assets/images/portadafn.webp" alt="" />
         <img
           src="https://www.anahuac.mx/mexico/sites/default/files/styles/webp/public/noticias/Los-colores-que-utilizamos-en-la-ropa-dicen-como-somos.jpg.webp?itok=k3GFCGkN"
-          alt="">
+          alt=""
+        />
         <img
           src="https://st3.depositphotos.com/9747634/32010/i/450/depositphotos_320104748-stock-photo-hangers-with-different-clothes-in.jpg"
-          alt="">
-        <img src="https://d1ih8jugeo2m5m.cloudfront.net/2024/08/ideas_para_tienda_de_ropa_infantil-1200x685.jpg" alt="">
+          alt=""
+        />
+        <img
+          src="https://d1ih8jugeo2m5m.cloudfront.net/2024/08/ideas_para_tienda_de_ropa_infantil-1200x685.jpg"
+          alt=""
+        />
       </div>
     </div>
     <div class="">
-
-      <h2 class="text-center my-3 font-bold text-4xl underline">Lo mas vendido</h2>
+      <h2 class="text-center my-3 font-bold text-4xl underline">
+        Lo mas vendido
+      </h2>
 
       <div class="container-vendido mx-5">
         <div *ngFor="let item of products" class="vendido">
-          <img [src]="item.image" alt="" class="h-64 w-full">
+          <img [src]="item.image" alt="" class="h-64 w-full" />
           <div class="">
             <button class="w-full btncard flex gap-1 items-center px-1 py-2">
               <ion-icon name="cart-outline"></ion-icon>
               Añadir a mi carrito
             </button>
-            <strong>
-              ${{ item.price }}.00
-            </strong>
+            <strong> ${{ item.price }}.00 </strong>
           </div>
         </div>
       </div>
 
-
-
-
       <h2 class="text-center my-3 font-bold text-4xl underline">Descubre</h2>
       <div class="flex justify-center py-2 rounded-md flex-col gap-5">
         <div *ngFor="let item of products">
-          <img [src]="item.image" alt="">
+          <img [src]="item.image" alt="" />
         </div>
       </div>
 
-
-      <h2 class="text-center my-3 font-bold text-4xl text-red-700 underline">Rebajas</h2>
+      <h2 class="text-center my-3 font-bold text-4xl text-red-700 underline">
+        Rebajas
+      </h2>
       <div class="flex justify-center">
         <div class="grid grid-cols-2 gap-y-2">
           <div *ngFor="let item of products" class="flex flex-col">
             <div class="h-80 md:h-full overflow-hidden">
-              <img [src]="item.image" [alt]="item.name" class="h-full">
+              <img [src]="item.image" [alt]="item.name" class="h-full" />
             </div>
             <span class="flex gap-2 text-lg">
               <strong class="text-blue-950">${{ item.price }}.00</strong>
@@ -76,8 +67,6 @@
           </div>
         </div>
       </div>
-
-
     </div>
   </ion-content>
 </div>
