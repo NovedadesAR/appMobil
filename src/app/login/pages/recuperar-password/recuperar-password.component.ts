@@ -7,4 +7,5 @@ import { Component } from '@angular/core';
 })
 export class RecuperarPasswordComponent {
 
+  public isNext:boolean = false;
 }
