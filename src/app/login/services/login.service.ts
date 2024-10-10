@@ -12,6 +12,6 @@ const { url_api } = environment;
 export class LoginService {
   constructor(private http:HttpClient) { }
   public login(dataLogin:LoginData) {
-    return this.http.post<LoginResonse>(`${url_api}/login`, dataLogin);
+    return this.http.post<LoginResonse>(`${url_api}login`, dataLogin);
   }
 }

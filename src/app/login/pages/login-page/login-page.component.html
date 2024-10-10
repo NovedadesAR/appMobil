@@ -7,22 +7,21 @@
     <p>Inicia sesion para poder acceder a tu cuenta y mas funciones.</p>
   </div>
 
-  <form class="container-form mt-5 pb-5 py-2">
+  <form class="container-form mt-5 pb-5 py-2" [formGroup]="loginForm" (ngSubmit)="loginAction()">
     <ion-item>
       <ion-label position="stacked"
         ><span class="text-xl">Correo electronico</span></ion-label
       >
-      <ion-input type="email" placeholder="example@gmail.com"></ion-input>
+      <ion-input formControlName="email" type="email" placeholder="example@gmail.com"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label position="stacked"
         ><span class="text-xl">Contraseña</span></ion-label
       >
-      <ion-input type="password" placeholder="examplePass123"></ion-input>
+      <ion-input formControlName="password" type="password" placeholder="examplePass123"></ion-input>
     </ion-item>
     <div class="px-2 py-3">
-
-      <ion-button color="dark" fill="outline" class="capitalize">
+      <ion-button type="submit" color="dark" fill="outline" class="capitalize">
         Iniciar sesion
       </ion-button>
       <ion-button color="medium" class="capitalize">
