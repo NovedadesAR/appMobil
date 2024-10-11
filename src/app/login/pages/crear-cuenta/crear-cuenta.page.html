@@ -43,7 +43,7 @@
           <input type="date" class="w-full" />
         </ion-item>
         <div class="mt-2">
-          <ion-button color="dark" class="w-full" (click)="isNext = true"
+          <ion-button color="dark" class="w-full" (click)="formValidFirts()" 
             >Siguiente</ion-button
           >
         </div>
@@ -72,7 +72,7 @@
           <ion-input formControlName="password2" type="password"></ion-input>
         </ion-item>
         <ion-item>
-          <ion-select formControlName="questions" label="Pregunta secreta" label-placement="Pregunta secreta">
+          <ion-select formControlName="question" label="Pregunta secreta" label-placement="Pregunta secreta">
             <ion-select-option value="1">¿Nombre de su Perro?</ion-select-option>
             <ion-select-option value="2">¿Comida Favorita?</ion-select-option>
             <ion-select-option value="3">¿Pelicula Favorita?</ion-select-option>

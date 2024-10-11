@@ -24,5 +24,19 @@ export class CrearCuentaPage{
     password2:['',[Validators.required]]
     
   })
+
   public isNext:boolean = false;
+
+  public formValidFirts(){
+    if(
+      this.formCreate.controls['name'].invalid &&
+      this.formCreate.controls['lastname'].invalid &&
+      this.formCreate.controls['motherLastname'].invalid &&
+      this.formCreate.controls['gender'].invalid &&
+      this.formCreate.controls['birthdate'].invalid 
+    )
+    return alert('No validado')
+    this.isNext=true
+  }
+
 }
