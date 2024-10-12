@@ -6,11 +6,15 @@ import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { IonicModule } from '@ionic/angular';
 import { LoginService } from './services/login.service';
 import { ReactiveFormsModule } from '@angular/forms';
+import { AcordionComponentComponent } from './components/acordion-component/acordion-component.component';
+import { TitleAndDescriptionComponent } from './components/title-and-description/title-and-description.component';
 
 
 @NgModule({
   declarations: [
-    LoginPageComponent
+    LoginPageComponent,
+    AcordionComponentComponent,
+    TitleAndDescriptionComponent
   ],
   imports: [
     CommonModule,
