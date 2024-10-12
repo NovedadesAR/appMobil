@@ -8,7 +8,7 @@
 </ion-toolbar>
 
 <ion-content [fullscreen]="true" class="ion-padding">
-  <h2 class="text-xl text-gray-800 font-bold mb-2">Regístrate</h2>
+  <app-title-and-description [data]="dataByTitleComponent"></app-title-and-description>
   <div class="container-cuenta">
     <form [formGroup]="formCreate">
       <ion-item>
@@ -78,13 +78,17 @@
         <ion-input formControlName="answer"></ion-input>
       </ion-item>
       <div class="mt-2">
-        <ion-button color="dark" fill="outline"
-          >Regresar</ion-button
+        <ion-button color="dark" fill="outline" routerLink="/loginModule/login" [disabled]="getButtonControl">Regresar</ion-button
         >
-        <ion-button color="dark" (click)="ValidSecondForm()"
-          >Crear cuenta</ion-button
+        <ion-button color="dark" (click)="ValidSecondForm()" [disabled]="getButtonControl">Crear cuenta</ion-button
         >
       </div>
     </form>
   </div>
+  <ion-toast
+    [isOpen]="getisToastOpen"
+    [message]="getToastMessage"
+    [duration]="2000"
+    (didDismiss)="setisToastOpen = false"
+  ></ion-toast>
 </ion-content>
