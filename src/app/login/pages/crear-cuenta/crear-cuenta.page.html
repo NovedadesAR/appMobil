@@ -10,88 +10,80 @@
 <ion-content [fullscreen]="true" class="ion-padding">
   <h2 class="text-xl text-gray-800 font-bold mb-2">Regístrate</h2>
   <div class="container-cuenta">
-    
     <form [formGroup]="formCreate">
-
-      <div [class.toggle]="isNext">
-        <ion-item>
-          <ion-label position="stacked"><span>Nombre</span></ion-label>
-          <ion-input formControlName="name"></ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-label position="stacked"
-            ><span>Apellido Paterno</span></ion-label
-          >
-          <ion-input formGroupName="lastname"></ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-label position="stacked"
-            ><span>Apellido materno</span></ion-label
-          >
-          <ion-input formControlName="motherLastname"></ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-select formControlName="gender" label="Genero" label-placement="Genero">
-            <ion-select-option value="M">Hombre</ion-select-option>
-            <ion-select-option value="F">Mujer</ion-select-option>
-          </ion-select>
-        </ion-item>
-        <ion-item>
-          <ion-label position="stacked"
-            ><span>Fecha de nacimiento</span></ion-label
-          >
-          <input type="date" class="w-full" />
-        </ion-item>
-        <div class="mt-2">
-          <ion-button color="dark" class="w-full" (click)="ValidFirtsForm()" 
-            >Siguiente</ion-button
-          >
-        </div>
-      </div>
-      <div [class.next]="!isNext" class="absolute top-0 w-full">
-        <ion-item>
-          <ion-label position="stacked"
-            ><span>Correo electronico</span></ion-label
-          >
-          <ion-input formControlName="email" type="email"></ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-label position="stacked"
-            ><span>Numero de telefono</span></ion-label
-          >
-          <ion-input formControlName="cellphone" type="tel"></ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-label position="stacked"><span>Contraseña</span></ion-label>
-          <ion-input formControlName="password" type="password"></ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-label position="stacked">
-            <span>Repita contraseña</span>
-          </ion-label>
-          <ion-input formControlName="password2" type="password"></ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-select formControlName="question" label="Pregunta secreta" label-placement="Pregunta secreta">
-            <ion-select-option value="1">¿Nombre de su Perro?</ion-select-option>
-            <ion-select-option value="2">¿Comida Favorita?</ion-select-option>
-            <ion-select-option value="3">¿Pelicula Favorita?</ion-select-option>
-            <ion-select-option value="4">¿Color Favorito?</ion-select-option>
-
-          </ion-select>
-        </ion-item>
-        <ion-item>
-          <ion-label position="stacked"><span>Respuesta</span></ion-label>
-          <ion-input formControlName="answer"></ion-input>
-        </ion-item>
-        <div class="mt-2">
-          <ion-button color="dark" (click)="isNext = false" fill="outline"
-            >Anterior</ion-button
-          >
-          <ion-button color="dark" (click)="ValidSecondForm()"
-            >Confirmar</ion-button
-          >
-        </div>
+      <ion-item>
+        <ion-label position="stacked"><span>Nombre</span></ion-label>
+        <ion-input formControlName="name"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked"><span>Apellido Paterno</span></ion-label>
+        <ion-input formControlName="lastname"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked"><span>Apellido materno</span></ion-label>
+        <ion-input formControlName="motherLastname"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-select
+          formControlName="gender"
+          label="Genero"
+          label-placement="Genero"
+        >
+          <ion-select-option value="M">Hombre</ion-select-option>
+          <ion-select-option value="F">Mujer</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked"
+          ><span>Fecha de nacimiento</span></ion-label
+        >
+        <input formControlName="birthdate" type="date" class="w-full" />
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked"
+          ><span>Correo electronico</span></ion-label
+        >
+        <ion-input formControlName="email" type="email"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked"
+          ><span>Numero de telefono</span></ion-label
+        >
+        <ion-input formControlName="cellphone" type="tel"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked"><span>Contraseña</span></ion-label>
+        <ion-input formControlName="password" type="password"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked">
+          <span>Repita contraseña</span>
+        </ion-label>
+        <ion-input formControlName="password2" type="password"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-select
+          formControlName="question"
+          label="Pregunta secreta"
+          label-placement="Pregunta secreta"
+        >
+          <ion-select-option value="1">¿Nombre de su Perro?</ion-select-option>
+          <ion-select-option value="2">¿Comida Favorita?</ion-select-option>
+          <ion-select-option value="3">¿Pelicula Favorita?</ion-select-option>
+          <ion-select-option value="4">¿Color Favorito?</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked"><span>Respuesta</span></ion-label>
+        <ion-input formControlName="answer"></ion-input>
+      </ion-item>
+      <div class="mt-2">
+        <ion-button color="dark" fill="outline"
+          >Regresar</ion-button
+        >
+        <ion-button color="dark" (click)="ValidSecondForm()"
+          >Crear cuenta</ion-button
+        >
       </div>
     </form>
   </div>

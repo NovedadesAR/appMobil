@@ -5,6 +5,7 @@ import { LoginData } from '../interfaces/Login-data.interface';
 import { LoginResonse } from '../interfaces/Login-response.interface';
 import { CheckLoginResponse } from '../interfaces/Check-email-response.interface';
 import { ResponseEmail } from '../interfaces/Response-code-recover.interface';
+import { ResponseBack } from '../interfaces/Response-back.interface';
 
 const { url_api } = environment;
 
@@ -21,5 +22,24 @@ export class LoginService {
   }
   public sendCodeRecoverPassword(email:string){
     return this.http.post<ResponseEmail>(`${url_api}email`,{to:email});
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  //Funcion para crear el usuario
+  createUser(user: any) {
+    return this.http.post<ResponseBack>(url_api + 'users', user);
   }
 }
