@@ -27,7 +27,7 @@ export class CrearCuentaPage{
 
   public isNext:boolean = false;
 
-  public formValidFirts(){
+  public ValidFirtsForm(){
     if(
       this.formCreate.controls['name'].invalid &&
       this.formCreate.controls['lastname'].invalid &&
@@ -38,5 +38,13 @@ export class CrearCuentaPage{
     return alert('No validado')
     this.isNext=true
   }
+
+  public ValidSecondForm(){
+    if(
+      this.formCreate.invalid
+    )
+    return alert('Llena bien tus datos')
+  }
+
 
 }
