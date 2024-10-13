@@ -7,21 +7,24 @@ import { CheckLoginResponse } from '../interfaces/Check-email-response.interface
 import { ResponseEmail } from '../interfaces/Response-code-recover.interface';
 import { ResponseBack } from '../interfaces/Response-back.interface';
 
-const { url_api } = environment;
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoginService {
   constructor(private http:HttpClient) { }
+
+  private codeRecover:string = '';
+
+  private ulr_api = environment.url_api
   public login(dataLogin:LoginData) {
-    return this.http.post<LoginResonse>(`${url_api}login`, dataLogin);
+    return this.http.post<LoginResonse>(`${this.ulr_api}login`, dataLogin);
   }
   public checkEmail(email:string){
-    return this.http.post<CheckLoginResponse>(`${url_api}recover-password`,{email});
+    return this.http.post<CheckLoginResponse>(`${this.ulr_api}recover-password`,{email});
   }
   public sendCodeRecoverPassword(email:string){
-    return this.http.post<ResponseEmail>(`${url_api}email`,{to:email});
+    return this.http.post<ResponseEmail>(`${this.ulr_api}email`,{to:email});
   }
 
 
@@ -40,6 +43,14 @@ export class LoginService {
 
   //Funcion para crear el usuario
   createUser(user: any) {
-    return this.http.post<ResponseBack>(url_api + 'users', user);
+    return this.http.post<ResponseBack>(this.ulr_api + 'users', user);
+  }
+
+
+  get recoverCode(){
+    return this.codeRecover;
+  }
+  set recoverCode(code:string){
+    this.codeRecover = code;
   }
 }

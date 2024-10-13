@@ -10,6 +10,8 @@ import { LoginService } from './services/login.service';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AcordionComponentComponent } from './components/acordion-component/acordion-component.component';
 import { TitleAndDescriptionComponent } from './components/title-and-description/title-and-description.component';
+import { WriteCodeComponent } from './pages/write-code/write-code.component';
+import { ChangePasswordComponent } from './pages/change-password/change-password.component';
 
 
 
@@ -20,6 +22,8 @@ import { TitleAndDescriptionComponent } from './components/title-and-description
     TitleAndDescriptionComponent,
     CrearCuentaPage,
     RecuperarPasswordComponent,
+    WriteCodeComponent,
+    ChangePasswordComponent,
   ],
   imports: [
     CommonModule,
