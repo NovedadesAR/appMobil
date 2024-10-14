@@ -38,7 +38,8 @@ export class RecuperarPasswordComponent {
                 switch (res.status) {
                   case 200:
                     this.toggleByForm(2);
-                    this.loginService.recoverCode = res.codigo;
+                    this.loginService.setRecoverCode = res.codigo;
+                    this.loginService.sEmail = this.emailForm.controls['email'].value!;
                     this.router.navigate(['/loginModule/write-code']);
                     break;
                   default:

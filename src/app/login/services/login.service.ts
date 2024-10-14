@@ -15,6 +15,7 @@ export class LoginService {
   constructor(private http:HttpClient) { }
 
   private codeRecover:string = '';
+  private email:string = '';
 
   private ulr_api = environment.url_api
   public login(dataLogin:LoginData) {
@@ -47,10 +48,20 @@ export class LoginService {
   }
 
 
+  updatePassword(email: string, password: {password:string,ip:string,fecha:string}){
+    return this.http.patch<ResponseBack>(`${this.ulr_api}users/password/${email}`,password)
+  }
+
   get recoverCode(){
     return this.codeRecover;
   }
-  set recoverCode(code:string){
+  set setRecoverCode(code:string){
     this.codeRecover = code;
+  }
+  get gEmail(){
+    return this.email;
+  }
+  set sEmail(email:string){
+    email = email
   }
 }
