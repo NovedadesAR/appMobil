@@ -28,10 +28,10 @@ const routes: Routes = [
     canMatch:[codeMatchGuard],
   },
   {
-    path: 'change-password',
+    path: 'change-password/:email',
     component:ChangePasswordComponent,
-    canActivate:[CodeActivateGuard],
-    canMatch:[codeMatchGuard],
+    //canActivate:[CodeActivateGuard],
+    //canMatch:[codeMatchGuard],
   },
   {
     path: '',

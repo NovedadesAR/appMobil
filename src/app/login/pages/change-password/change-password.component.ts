@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { LoginService } from '../../services/login.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -8,12 +8,15 @@ import { Router } from '@angular/router';
   templateUrl: './change-password.component.html',
   styleUrl: './change-password.component.css',
 })
-export class ChangePasswordComponent {
+export class ChangePasswordComponent{
   constructor(
     private loginService: LoginService,
     private fb: FormBuilder,
     private router: Router,
   ) {}
+  private isToastOpen: boolean = false;
+  private toastMessage: string = '';
+
   public dataByTitle = {
     title: 'Recuperacion de contraseña',
     subtitle: 'Crea una nueva contraseña',
@@ -32,11 +35,27 @@ export class ChangePasswordComponent {
     }
     this.loginService.updatePassword(this.loginService.gEmail, data).subscribe(data => {
       if (data.status === 202) {
+        this.setMesageToast('Se cambio la contraseña correctamente');
         setTimeout(() => {
           this.router.navigate(['/loginModule/login']);
         }, 1000);
       }
     })
 
+  }
+
+
+  private setMesageToast(message: string) {
+    this.toastMessage = message;
+    this.isToastOpen = true;
+  }
+  get getisToastOpen() {
+    return this.isToastOpen;
+  }
+  get getToastMessage() {
+    return this.toastMessage;
+  }
+  set setisToastOpen(isToastOpen: boolean) {
+    this.isToastOpen = isToastOpen;
   }
 }

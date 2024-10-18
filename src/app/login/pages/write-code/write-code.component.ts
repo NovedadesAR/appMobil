@@ -8,7 +8,7 @@ import { FormBuilder, Validators } from '@angular/forms';
   templateUrl: './write-code.component.html',
   styleUrl: './write-code.component.css',
 })
-export class WriteCodeComponent{
+export class WriteCodeComponent {
   constructor(
     private loginService:LoginService,
     private fb: FormBuilder,
@@ -36,7 +36,7 @@ export class WriteCodeComponent{
       return;
     }
     if(this.codeForm.controls['code'].value === this.loginService.recoverCode){
-      this.router.navigate(['/loginModule/change-password']);
+      this.router.navigate([`/loginModule/change-password/${this.loginService.gEmail}`]);
     }
     else{
       this.setMesageToast('El codigo es incorrecto');

@@ -15,7 +15,7 @@ export class LoginService {
   constructor(private http:HttpClient) { }
 
   private codeRecover:string = '';
-  private email:string = '';
+  private emailRwcover:string = '';
 
   private ulr_api = environment.url_api
   public login(dataLogin:LoginData) {
@@ -59,9 +59,9 @@ export class LoginService {
     this.codeRecover = code;
   }
   get gEmail(){
-    return this.email;
+    return this.emailRwcover;
   }
   set sEmail(email:string){
-    email = email
+    this.emailRwcover = email
   }
 }
