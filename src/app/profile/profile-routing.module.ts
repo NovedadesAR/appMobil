@@ -1,15 +1,15 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AccountComponent } from './pages/account/account.component';
-import { loginGuard } from '../login/guards/loginGuard/login-activate.guard';
-import { loginMatchGuard } from '../login/guards/loginGuard/login-match.guard';
+import { accountMatchGuard } from './guards/account-match.guard';
+import { accountActivateGuard } from './guards/account-activate.guard';
 
 const routes: Routes = [
   {
     path:'account',
     component:AccountComponent,
-    canActivate:[loginGuard],
-    canMatch:[loginMatchGuard]
+    canMatch:[accountMatchGuard],
+    canActivate:[accountActivateGuard]
   },
   {
     path:'',
