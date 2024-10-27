@@ -8,6 +8,7 @@ import { HomePage } from './pages/homeComponent/home.page';
 
 import { CarouselModule } from 'primeng/carousel';
 import { TabNavigationComponent } from './pages/tab-navigation/tab-navigation.component';
+import { SliderProductsComponent } from './components/slider-products/slider-products.component';
 
 
 @NgModule({
@@ -17,10 +18,12 @@ import { TabNavigationComponent } from './pages/tab-navigation/tab-navigation.co
     IonicModule,
     HomePageRoutingModule,
     CarouselModule,
-  ],
+
+],
   declarations: [
     HomePage,
     TabNavigationComponent,
+    SliderProductsComponent,
 
   ]
 })

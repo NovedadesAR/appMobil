@@ -1,0 +1,12 @@
+.products{
+  display: flex;
+  overflow-x: auto;
+
+}
+.vendido {
+  min-width: 160px;
+  margin-right: 10px;
+}
+.name{
+  font-size: small;
+}
