@@ -8,3 +8,7 @@
   flex-wrap: nowrap;
   transition: transform 0.5s ease;
 }
+ion-searchbar{
+  --background:none;
+  --box-shadow:none;
+}
