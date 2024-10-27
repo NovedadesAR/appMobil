@@ -1,11 +1,15 @@
 <div class="ion-page" id="main-content">
   <ion-header>
     <ion-toolbar class="pb-2">
-      <ion-title class="font-bold text-3xl font-serif text-center text-white mt-2">Novedades A&R</ion-title>
+      <ion-title
+        class="font-bold text-3xl font-serif text-center text-black mt-2"
+        >Novedades A&R</ion-title
+      >
       <ion-searchbar></ion-searchbar>
     </ion-toolbar>
   </ion-header>
   <ion-content>
+
     <div class="slider mb-5">
       <div class="slider-inner" id="slider" #slider>
         <img src="../../../../assets/images/slider/1.jpg" alt="" />
@@ -15,31 +19,17 @@
       </div>
     </div>
 
-    <app-slider-products
-      [title]="'Novedades'"
-      [description]="'Explora las últimas tendencias y estilos exclusivos que tenemos como novedades.'"
-      [products]="novedades"
-    >
-    </app-slider-products>
+    <app-slider-products [title]="'Novedades'" [products]="novedades"></app-slider-products>
 
-    <app-slider-products
-      [title]="'Descuentos'"
-      [description]="'Aprovecha grandes descuentos en moda y encuentra tus prendas favoritas al mejor precio.'"
-      [products]="descuentos"
-    >
-    </app-slider-products>
+    <app-slider-products [title]="'Descuentos'" [products]="descuentos"></app-slider-products>
 
-    <app-slider-products
-      [title]="'Lo mas nuevo para dama'"
-      [description]="'Estilos únicos y modernos pensados para ti. Descubre nuestra colección para dama.'"
-      [products]="dama"
-    >
-    </app-slider-products>
-    <h3 class="text-center text-2xl mb-3 font-bold font-serif">
-      Encuentra para dama
-    </h3>
+    <app-slider-products [title]="'Dama'" [products]="dama"></app-slider-products>
 
-    <div class="grid grid-cols-2 mb-5">
+    <app-slider-products [title]="'Caballero'" [products]="caballero"></app-slider-products>
+
+    <app-title-category [title]="'Descubre para dama'"></app-title-category>
+
+    <div class="grid grid-cols-2 mb-5 gap-2 mx-2">
       <img src="../../../../assets/images/mujer/1.png" alt="" />
       <img src="../../../../assets/images/mujer/2.png" alt="" />
       <img src="../../../../assets/images/mujer/3.png" alt="" />
@@ -51,16 +41,11 @@
       <img src="../../../../assets/images/mujer/9.png" alt="" />
       <img src="../../../../assets/images/mujer/10.png" alt="" />
     </div>
-    <app-slider-products
-      [title]="'Lo ultimo para caballero'"
-      [description]="'Renueva tu estilo con lo último en moda masculina.'"
-      [products]="caballero"
-    >
-    </app-slider-products>
-    <h3 class="text-center text-2xl mb-3 font-bold font-serif">
-      Encuentra para caballero
-    </h3>
-    <div class="grid grid-cols-2 mb-5">
+
+
+    <app-title-category [title]="'Descubre para caballero'"></app-title-category>
+
+    <div class="grid grid-cols-2 mb-5 gap-2 mx-2">
       <img src="../../../../assets/images/hombre/12.png" alt="" />
       <img src="../../../../assets/images/hombre/13.png" alt="" />
       <img src="../../../../assets/images/hombre/14.png" alt="" />
@@ -68,5 +53,6 @@
       <img src="../../../../assets/images/hombre/16.png" alt="" />
       <img src="../../../../assets/images/hombre/17.png" alt="" />
     </div>
+
   </ion-content>
 </div>
