@@ -19,13 +19,13 @@
       </div>
     </div>
 
-    <app-slider-products [title]="'Novedades'" [products]="novedades"></app-slider-products>
+    <app-slider-products [isLoader]="isLoader" [title]="'Novedades'" [products]="novedades"></app-slider-products>
 
-    <app-slider-products [title]="'Descuentos'" [products]="descuentos"></app-slider-products>
+    <app-slider-products [isLoader]="isLoader" [title]="'Descuentos'" [products]="descuentos"></app-slider-products>
 
-    <app-slider-products [title]="'Dama'" [products]="dama"></app-slider-products>
+    <app-slider-products [isLoader]="isLoader" [title]="'Dama'" [products]="dama"></app-slider-products>
 
-    <app-slider-products [title]="'Caballero'" [products]="caballero"></app-slider-products>
+    <app-slider-products [isLoader]="isLoader" [title]="'Caballero'" [products]="caballero"></app-slider-products>
 
     <app-title-category [title]="'Descubre para dama'"></app-title-category>
 
@@ -89,5 +89,6 @@
         </li>
       </ul>
     </div>
+
   </ion-content>
 </div>

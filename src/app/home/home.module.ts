@@ -10,6 +10,7 @@ import { CarouselModule } from 'primeng/carousel';
 import { TabNavigationComponent } from './pages/tab-navigation/tab-navigation.component';
 import { SliderProductsComponent } from './components/slider-products/slider-products.component';
 import { TitleCategoryComponent } from './components/title-category/title-category.component';
+import { LoaderComponent } from './components/loader/loader.component';
 
 
 @NgModule({
@@ -26,6 +27,7 @@ import { TitleCategoryComponent } from './components/title-category/title-catego
     TabNavigationComponent,
     SliderProductsComponent,
     TitleCategoryComponent,
+    LoaderComponent,
 
   ]
 })

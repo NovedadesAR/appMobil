@@ -23,7 +23,7 @@ export class HomePage implements AfterViewInit, OnInit {
   public descuentos:ProductoIni[] = [];
   public dama:ProductoIni[] = [];
   public caballero: ProductoIni[] = [];
-
+  public isLoader:boolean = true;
   selectImage(element: ElementRef) {
     const elementDiv = element.nativeElement as HTMLInputElement;
     let index = 1;
@@ -43,6 +43,7 @@ export class HomePage implements AfterViewInit, OnInit {
       this.descuentos = res.descuento;
       this.dama = res.dama;
       this.caballero = res.caballero;
+      this.isLoader = false;
     });
   }
 }

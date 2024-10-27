@@ -11,6 +11,8 @@ export class SliderProductsComponent {
   public products: ProductoIni[] = [];
   @Input()
   public title:string = '';
+  @Input()
+  public isLoader:boolean = true;
 
   public calDesc(price:number, discount:number):number{
     return price - (price * (discount / 100));

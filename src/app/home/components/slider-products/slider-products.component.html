@@ -5,7 +5,10 @@
     <ion-icon name="caret-back-outline"></ion-icon>
   </div>
 </div>
-<div class="products my-5 mx-4">
+
+<app-loader *ngIf="isLoader"></app-loader>
+
+<div *ngIf="!isLoader" class="products my-5 mx-4">
   <div *ngFor="let item of products" class="vendido relative">
     <img [src]="item.imagen[0].url_imagen" alt="" class="h-56 w-full" />
     <button
