@@ -5,33 +5,25 @@ import { TabNavigationComponent } from './pages/tab-navigation/tab-navigation.co
 
 const routes: Routes = [
   {
-    path:'',
-    component:TabNavigationComponent,
-    children:[
+    path: '',
+    component: TabNavigationComponent,
+    children: [
       {
-        path:'home',
-        component: HomePage
-      },
-      {
-        path:'profileModule',
-        loadChildren: () => import('../profile/profile.module').then(m => m.ProfileModule)
-      },
-      {
-        path:'productsModule',
-        loadChildren: () => import('../login/login.module').then(m => m.LoginModule)
+        path: 'home',
+        component: HomePage,
       },
       {
         path: '',
-        redirectTo: 'home',
-        pathMatch: 'full'
-      },
-    ]
+        loadChildren: () =>
+          import('../profile/profile.module').then((m) => m.ProfileModule),
+      }
+    ],
   },
 
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
 export class HomePageRoutingModule {}

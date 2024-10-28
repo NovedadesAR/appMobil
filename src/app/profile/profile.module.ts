@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { ProfileRoutingModule } from './profile-routing.module';
 import { AccountComponent } from './pages/account/account.component';
+import { IonicModule } from '@ionic/angular';
 
 
 
@@ -12,7 +13,8 @@ import { AccountComponent } from './pages/account/account.component';
   ],
   imports: [
     CommonModule,
-    ProfileRoutingModule
+    ProfileRoutingModule,
+    IonicModule
   ]
 })
 export class ProfileModule { }

@@ -8,17 +8,13 @@ const routes: Routes = [
   {
     path:'account',
     component:AccountComponent,
+    //canActivate:[accountActivateGuard],
     canMatch:[accountMatchGuard],
-    canActivate:[accountActivateGuard]
   },
   {
     path:'',
-    redirectTo:'/home',
-    pathMatch:'full'
-  },
-  {
-    path:'**',
-    redirectTo:'/loginModule/login'
+    redirectTo: '/home',
+    pathMatch: 'full'
   }
 ];
 
