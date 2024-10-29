@@ -34,7 +34,7 @@ jobs:
 
       # 3. Instalar dependencias del proyecto
       - name: Install dependencies
-        run: npm ci
+        run: npm i
 
       # 6. Ejecutar pruebas unitarias con Jasmin y Karma
       - name: Run unit test Jasmine karma tests
