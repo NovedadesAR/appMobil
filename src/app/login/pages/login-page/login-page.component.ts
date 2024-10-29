@@ -3,12 +3,14 @@ import { LoginService } from '../../services/login.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
+
 @Component({
   selector: 'app-login-page',
   templateUrl: './login-page.component.html',
   styleUrl: './login-page.component.css',
 })
 export class LoginPageComponent {
+
   constructor(
     private loginService: LoginService,
     private fb: FormBuilder,
@@ -94,4 +96,5 @@ export class LoginPageComponent {
   set setisToastOpen(isToastOpen:boolean){
     this.isToastOpen = isToastOpen;
   }
+
 }
