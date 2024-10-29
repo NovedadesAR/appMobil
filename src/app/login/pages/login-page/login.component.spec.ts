@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 import { of } from 'rxjs';
 import { LoginPageComponent } from './login-page.component';
 import { LoginService } from '../../services/login.service';
+import { IonicModule } from '@ionic/angular';
+import { TitleAndDescriptionComponent } from '../../components/title-and-description/title-and-description.component';
 
 describe('LoginPageComponent', () => {
   let component: LoginPageComponent;
@@ -17,8 +19,8 @@ describe('LoginPageComponent', () => {
     routerSpy = jasmine.createSpyObj('Router', ['navigate']);
 
     await TestBed.configureTestingModule({
-      declarations: [LoginPageComponent],
-      imports: [ReactiveFormsModule], // Importamos ReactiveFormsModule para el formulario
+      declarations: [LoginPageComponent,TitleAndDescriptionComponent],
+      imports: [ReactiveFormsModule,IonicModule], // Importamos ReactiveFormsModule para el formulario
       providers: [
         { provide: LoginService, useValue: loginServiceSpy },
         { provide: Router, useValue: routerSpy }
