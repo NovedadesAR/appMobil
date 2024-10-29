@@ -1,47 +1,33 @@
-name: APP CI/CD Workflow
+name: Run unit test Jasmine karma tests
 
-# Disparadores para el workflow
 on:
   push:
     branches:
-      - pruebas # Ejecutar las pruebas en cualquier rama en cada push
+      - pruebas
   pull_request:
     branches:
-      - master   # Ejecutar las pruebas antes de fusionar a master
-
-  workflow_dispatch:
-
-# Permisos para GitHub Actions
-permissions:
-  contents: read
+      - main
 
 jobs:
-  Pruebas:
-    #name: Run Unit Tests
+  test:
     runs-on: ubuntu-latest
-
     steps:
-      # 1. Checkout del repositorio
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v2
 
-      # 2. Configurar Node.js (para Angular y Jest)
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
         with:
-          node-version: '20' # Versión de Node.js recomendada
-          cache: 'npm'  # Configura el caché para npm automáticamente
+          node-version: '16' # Verifica la versión de Node.js adecuada
 
-      # 3. Instalar dependencias del proyecto
       - name: Install dependencies
-        run: npm i
+        run: npm install
 
-      # 6. Ejecutar pruebas unitarias con Jasmin y Karma
-      - name: Run unit test Jasmine karma tests
-        run: npm test -- --no-watch --no-progress --browsers=ChromeHeadlessCI
+      - name: Install Chrome dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libnss3 libxss1 libasound2 fonts-liberation libappindicator3-1 xdg-utils
 
-      # 7. Ejecutar pruebas lint
-      - name: Run lint test
-        run: npm run lint
-
-  
+      - name: Run unit tests
+        run: |
+          npm test -- --no-watch --no-progress --browsers=ChromeHeadlessCI
