@@ -37,13 +37,16 @@ module.exports = function (config) {
     colors: true,
     logLevel: config.LOG_INFO,
     autoWatch: true,
-    browsers: ['Chrome', 'ChromeHeadless', 'ChromeHeadlessCI'],
+    browsers: ['ChromeHeadless'], // Asegúrate de utilizar solo ChromeHeadless
     customLaunchers: {
       ChromeHeadlessCI: {
         base: 'ChromeHeadless',
-        flags: ['--no-sandbox']
+        flags: ['--no-sandbox', '--disable-gpu', '--disable-software-rasterizer']
       }
     },
+    // Usa el navegador personalizado en entornos CI (GitHub Actions)
+    browserNoActivityTimeout: 60000,
+    retryLimit: 3,
     singleRun: false,
     restartOnFileChange: true
   });
