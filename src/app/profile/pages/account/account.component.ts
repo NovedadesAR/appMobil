@@ -15,6 +15,7 @@ export class AccountComponent implements OnInit{
   private jwtHelper = new JwtHelperService();
   public name:string = '';
   public email:string = '';
+  public isLoader:boolean = true;
 
   public alertButtons = [
     {
@@ -44,6 +45,7 @@ export class AccountComponent implements OnInit{
         if(res.status === 200){
           this.name = res.name;
           this.email = res.email;
+          this.isLoader = false;
         }
       });
     }
