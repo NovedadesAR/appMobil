@@ -1,37 +1,50 @@
-name: Angular Tests - Jasmine Karma
+name: APPMOVIL CI/CD Jasmine -Karma # Nombre del flujo de trabajo
 
-# Define cuándo ejecutar el flujo de trabajo
+# Configuración de los desencadenadores
 on:
   push:
     branches:
-      - pruebas  # Ejecutar en cada push a la rama principal
+      - pruebas              # Ejecutar en cada push a la rama 'main'
+      - develop-luis
+      - develop-mabel       
   pull_request:
     branches:
-      - main  # Ejecutar en cada PR hacia la rama principal
+      - main
+    
+  workflow_dispatch:
 
 jobs:
   build-and-test:
-    runs-on: ubuntu-latest  # Utiliza la última versión de Ubuntu para ejecutar el flujo
+    runs-on: ubuntu-latest  # Sistema operativo (Ubuntu)
 
     steps:
       # Paso 1: Verificar el código fuente en el repositorio
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      # Paso 2: Configurar la versión de Node.js
+      # Paso 2: Configurar caché de dependencias para acelerar compilaciones
+      - name: Cache Node.js modules
+        uses: actions/cache@v2
+        with:
+          path: ~/.npm           # Ruta de las dependencias de npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      # Paso 3: Configurar Node.js con la versión necesaria
       - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: '20'  # Especifica la versión de Node.js (ajusta si usas otra versión)
+          node-version: '16'     # Define la versión de Node.js (ajusta según tu proyecto)
 
-      # Paso 3: Instalar las dependencias del proyecto
+      # Paso 4: Instalar dependencias del proyecto
       - name: Install dependencies
         run: npm install
 
-      # Paso 4 (opcional): Compilar la aplicación para verificar errores de construcción
+      # Paso 5 (opcional): Compilar la aplicación para verificar errores de construcción
       - name: Build application
         run: npm run build --if-present
 
-      # Paso 5: Ejecutar las pruebas con Karma y Jasmine
+      # Paso 6: Ejecutar las pruebas de Jasmine y Karma en modo sin cabeza (headless)
       - name: Run tests
         run: npm test -- --watch=false --no-progress
