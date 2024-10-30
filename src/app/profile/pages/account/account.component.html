@@ -13,14 +13,13 @@
       </div>
       <div class="flex flex-col w-full">
         <h3 class="text-3xl font-bold font-sans">Hola!</h3>
-        <strong class="font-sans">{{name}}</strong>
-        <span class="text-gray-500">{{email}}</span>
+        <strong class="font-sans">{{ name }}</strong>
+        <span class="text-gray-500">{{ email }}</span>
       </div>
     </div>
     <hr />
     <div class="py-3 px-4">
       <ul class="text-xl text-gray-600">
-
         <li class="flex items-center justify-between py-4">
           <div class="flex items-center gap-3">
             <ion-icon name="bag-check-outline"></ion-icon>
@@ -63,12 +62,16 @@
         <li class="flex items-center justify-between py-4">
           <div class="flex items-center gap-3">
             <ion-icon name="power-outline"></ion-icon>
-            <a href="#">Desconectar</a>
+            <span id="present-alert">Desconectar</span>
           </div>
           <ion-icon name="chevron-forward-outline"></ion-icon>
         </li>
-
       </ul>
+      <ion-alert
+        trigger="present-alert"
+        header="¿Estas seguro de salir?"
+        [buttons]="alertButtons"
+      ></ion-alert>
     </div>
   </div>
 </ion-content>

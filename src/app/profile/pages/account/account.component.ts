@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ProfileService } from '../../services/profile.service';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-account',
@@ -9,10 +10,27 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 })
 export class AccountComponent implements OnInit{
 
-  constructor(private profileService:ProfileService) { }
+  constructor(private profileService:ProfileService, private router:Router) { }
+
   private jwtHelper = new JwtHelperService();
   public name:string = '';
   public email:string = '';
+
+  public alertButtons = [
+    {
+      text: 'Cancelar',
+      role: 'cancel',
+      handler: () => {
+      },
+    },
+    {
+      text: 'Confirmar',
+      role: 'confirm',
+      handler: () => {
+        this.logout();
+      },
+    },
+  ];
 
   ngOnInit(): void {
     this.getUserProfile();
@@ -30,4 +48,10 @@ export class AccountComponent implements OnInit{
       });
     }
   }
+
+  private  logout(){
+    localStorage.removeItem('token');
+    this.router.navigate(['/home']);
+  }
+
 }
