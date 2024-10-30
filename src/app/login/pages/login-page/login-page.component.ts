@@ -23,9 +23,10 @@ export class LoginPageComponent {
   private buttonControl:boolean = false;
 
   public loginForm: FormGroup = this.fb.group({
-    email: ['', [Validators.required]],
+    email: ['', [Validators.required, Validators.email]], // Añadir Validators.email
     password: ['', [Validators.required]],
   });
+  
 
   public dataByTitleComponent = {
     title: 'Mi cuenta',
@@ -43,6 +44,9 @@ export class LoginPageComponent {
       ip: '192.143.2.1',
       fecha: '2020-21-10',
     };
+
+
+    
     this.loginService.login(dataByLogin).subscribe((resp) => {
       switch (resp.status) {
         case 200:
