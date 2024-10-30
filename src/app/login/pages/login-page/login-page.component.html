@@ -17,13 +17,19 @@
       <ion-label position="stacked"
         ><span class="text-xl">Correo electronico</span></ion-label
       >
-      <ion-input formControlName="email" type="email" placeholder="example@ gmail.com"></ion-input>
+      <!-- <ion-input formControlName="email" type="email" placeholder="example@ gmail.com"></ion-input> -->
+
+      <input formControlName="email" name="email" type="email" placeholder="example@gmail.com" class="email-input">
+
     </ion-item>
     <ion-item>
       <ion-label position="stacked"
         ><span class="text-xl">Contraseña</span></ion-label
       >
-      <ion-input formControlName="password" type="password" placeholder="examplePass123"></ion-input>
+      <!-- <ion-input formControlName="password" type="password" placeholder="examplePass123"></ion-input> -->
+
+      <input formControlName="password" name="password" type="password" placeholder="examplePass123" class="password-input">
+
     </ion-item>
     <div class="px-2 py-3">
       <ion-button type="submit" color="dark" fill="outline" class="capitalize" [disabled]="getButtonControl">

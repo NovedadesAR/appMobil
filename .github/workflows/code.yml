@@ -48,3 +48,10 @@ jobs:
       # Paso 6: Ejecutar las pruebas de Jasmine y Karma en modo sin cabeza (headless)
       - name: Run tests
         run: npm test -- --watch=false --no-progress
+
+        # Paso 7: Ejecutar pruebas de Cypress en modo headless
+      - name: Run Cypress tests
+        uses: cypress-io/github-action@v4
+        with:
+          browser: chrome  # Usa el navegador Chrome en modo sin cabeza
+          headless: true   # Ejecuta las pruebas en modo headless
