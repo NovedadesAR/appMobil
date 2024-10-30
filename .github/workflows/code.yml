@@ -54,4 +54,4 @@ jobs:
         uses: cypress-io/github-action@v4
         with:
           browser: chrome  # Usa el navegador Chrome en modo sin cabeza
-          headless: true   # Ejecuta las pruebas en modo headless
+          headless: true # Ejecuta las pruebas en modo headless
