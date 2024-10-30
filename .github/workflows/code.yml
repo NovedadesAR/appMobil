@@ -22,14 +22,14 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      # Paso 2: Configurar caché de dependencias para acelerar compilaciones
-      - name: Cache Node.js modules
-        uses: actions/cache@v2
-        with:
-          path: ~/.npm           # Ruta de las dependencias de npm
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node-
+      # # Paso 2: Configurar caché de dependencias para acelerar compilaciones
+      # - name: Cache Node.js modules
+      #   uses: actions/cache@v2
+      #   with:
+      #     path: ~/.npm           # Ruta de las dependencias de npm
+      #     key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+      #     restore-keys: |
+      #       ${{ runner.os }}-node-
 
       # Paso 3: Configurar Node.js con la versión necesaria
       - name: Set up Node.js
