@@ -12,7 +12,7 @@ import { fakeAsync, tick } from '@angular/core/testing';
 describe('LoginPageComponent', () => {
   let component: LoginPageComponent;
   let fixture: ComponentFixture<LoginPageComponent>;
-  let loginServiceSpy: jasmine.SpyObj<LoginService>;7
+  let loginServiceSpy: jasmine.SpyObj<LoginService>;
   let routerSpy = { navigate: jasmine.createSpy('navigate') };
 
 
