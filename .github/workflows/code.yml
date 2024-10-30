@@ -1,33 +1,37 @@
-name: Run unit test Jasmine karma tests
+name: Angular Tests - Jasmine Karma
 
+# Define cuándo ejecutar el flujo de trabajo
 on:
   push:
     branches:
-      - pruebas
+      - pruebas  # Ejecutar en cada push a la rama principal
   pull_request:
     branches:
-      - main
+      - main  # Ejecutar en cada PR hacia la rama principal
 
 jobs:
-  test:
-    runs-on: ubuntu-latest
+  build-and-test:
+    runs-on: ubuntu-latest  # Utiliza la última versión de Ubuntu para ejecutar el flujo
+
     steps:
-      - name: Checkout code
+      # Paso 1: Verificar el código fuente en el repositorio
+      - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: Setup Node.js
+      # Paso 2: Configurar la versión de Node.js
+      - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: '16' # Verifica la versión de Node.js adecuada
+          node-version: '20'  # Especifica la versión de Node.js (ajusta si usas otra versión)
 
+      # Paso 3: Instalar las dependencias del proyecto
       - name: Install dependencies
         run: npm install
 
-      # - name: Install Chrome dependencies
-      #   run: |
-      #     sudo apt-get update
-      #     sudo apt-get install -y libnss3 libxss1 libasound2 fonts-liberation libappindicator3-1 xdg-utils
+      # Paso 4 (opcional): Compilar la aplicación para verificar errores de construcción
+      - name: Build application
+        run: npm run build --if-present
 
-      - name: Run unit tests
-        run: |
-          npm test -- --no-watch --no-progress --browsers=ChromeHeadlessCI
+      # Paso 5: Ejecutar las pruebas con Karma y Jasmine
+      - name: Run tests
+        run: npm test -- --watch=false --no-progress
