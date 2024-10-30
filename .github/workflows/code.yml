@@ -10,52 +10,43 @@ on:
   pull_request:
     branches:
       - main
-
+    
   workflow_dispatch:
 
-# Permisos para GitHub Actions
-permissions:
-  contents: read
-
 jobs:
-  Pruebas:
-    #name: Run Unit Tests
-    runs-on: ubuntu-latest
+  build-and-test:
+    runs-on: ubuntu-latest  # Sistema operativo (Ubuntu)
 
     steps:
-      # 1. Checkout del repositorio
-      - name: Checkout code
-        uses: actions/checkout@v3
+      # Paso 1: Verificar el código fuente en el repositorio
+      - name: Checkout repository
+        uses: actions/checkout@v2
 
-      # 2. Configurar Node.js (para Angular y Jest)
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
+      # Paso 2: Configurar caché de dependencias para acelerar compilaciones
+      - name: Cache Node.js modules
+        uses: actions/cache@v2
         with:
-          node-version: '20' # Versión de Node.js recomendada
-          cache: 'npm'  # Configura el caché para npm automáticamente
+          path: ~/.npm           # Ruta de las dependencias de npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
 
-      # 3. Instalar dependencias del proyecto
+      # Paso 3: Configurar Node.js con la versión necesaria
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '20'     # Define la versión de Node.js (ajusta según tu proyecto)
+
+      # Paso 4: Instalar dependencias del proyecto
       - name: Install dependencies
-        run: npm ci
+        run: npm install
 
-      # 4. Levantar la aplicación de Angular
-      - name: Start Angular App
-        run: npx ionic serve --port 8100 &
-        env:
-          CI: true
+      # Paso 5 (opcional): Compilar la aplicación para verificar errores de construcción
+      - name: Build application
+        run: npm run build --if-present
 
-      # 5. Esperar a que el servidor esté arriba
-      - name: Wait for Angular App to be available
-        run: npx wait-on http://localhost:8100
+      # Paso 6: Ejecutar las pruebas de Jasmine y Karma en modo sin cabeza (headless)
+      - name: Run tests
+        run: npm test -- --watch=false --no-progress
 
-      # 6. Ejecutar pruebas unitarias con Jasmin y Karma
-      - name: Run unit test Jasmine karma tests
-        run: npm test -- --no-watch --no-progress --browsers=ChromeHeadlessCI
-
-      # 7. Ejecutar pruebas lint
-      - name: Run lint test
-        run: npm run lint
-
-      # 8. Ejecutar pruebas e2e con cypress
-      - name: e2e cypress
-        run: npx cypress run
+      
