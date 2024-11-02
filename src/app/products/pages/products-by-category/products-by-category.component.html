@@ -1,0 +1,37 @@
+<ion-header>
+  <ion-toolbar class="pb-2">
+    <ion-title class="font-bold text-3xl font-serif text-center text-black mt-2">Novedades A&R</ion-title>
+    <div class="flex items-center">
+      <ion-buttons>
+        <ion-button routerLink="/home">
+          <ion-icon name="home-outline"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+      <input class="w-full outline-none" placeholder="Buscar" />
+    </div>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <div class="flex items-center gap-1 justify-end mb-5 px-1 pt-5">
+    <label for="order" class="font-semibold">Ordenar por:</label>
+    <select name="order" id="order" (ngModel)="order" (change)="orderProductsByOrder()">
+      <option value="" selected disabled>Elige una opcion</option>
+      <option value="asc">Mayor precio</option>
+      <option value="desc">Menor precio</option>
+    </select>
+  </div>
+  <section class="grid grid-cols-2 gap-2 px-2">
+    <div *ngFor="let item of products" class="shadow-md">
+      <div class="relative">
+        <img [src]="item.imagen[0].url_imagen" [alt]="item.nombre_producto">
+        <button class="flex items-center justify-center py-2 px-2 absolute z-10 top-1 right-1 rounded-lg bg-white text-black shadow-md">
+          <ion-icon name="cart-outline"></ion-icon>
+        </button>
+      </div>
+      <div class="text-wrap px-1 pb-2 flex flex-col">
+        <strong>${{item.precio}}.00</strong>
+        <span class="capitalize font-light text-gray-600">{{item.nombre_producto}}</span>
+      </div>
+    </div>
+  </section>
+</ion-content>
