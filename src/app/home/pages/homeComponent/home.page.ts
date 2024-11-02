@@ -14,16 +14,20 @@ import { ProductoIni } from '../../interfaces/Data-home.interface';
   styleUrls: ['home.page.css'],
 })
 export class HomePage implements AfterViewInit, OnInit {
-
-  constructor(private homeService:HomeService) {}
+  constructor(private homeService: HomeService) {}
 
   @ViewChild('slider') slider!: ElementRef;
 
-  public novedades:ProductoIni[] = [];
-  public descuentos:ProductoIni[] = [];
-  public dama:ProductoIni[] = [];
+  public novedades: ProductoIni[] = [];
+  public descuentos: ProductoIni[] = [];
+  public dama: ProductoIni[] = [];
   public caballero: ProductoIni[] = [];
-  public isLoader:boolean = true;
+  public isLoader: boolean = true;
+
+
+  public faildConection:boolean = false;
+
+
   selectImage(element: ElementRef) {
     const elementDiv = element.nativeElement as HTMLInputElement;
     let index = 1;
@@ -38,12 +42,20 @@ export class HomePage implements AfterViewInit, OnInit {
     this.selectImage(this.slider);
   }
   ngOnInit(): void {
-    this.homeService.getProductByHome().subscribe(res => {
+    this.homeService.getProductByHome().subscribe((res) => {
       this.novedades = res.novedades;
       this.descuentos = res.descuento;
       this.dama = res.dama;
       this.caballero = res.caballero;
       this.isLoader = false;
+      this.faildConection = false;
+    },(Error)=>{
+      console.log("Hay error")
+      this.faildConection = true;
     });
+  }
+
+  public reloadPage(){
+    this.ngOnInit();
   }
 }

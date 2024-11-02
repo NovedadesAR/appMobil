@@ -1,4 +1,7 @@
-<div class="ion-page" id="main-content">
+<ion-card-content>
+  <app-error-page *ngIf="faildConection" (reload)="reloadPage()"></app-error-page>
+</ion-card-content>
+<div class="ion-page" id="main-content" *ngIf="!faildConection">
   <ion-header>
     <ion-toolbar class="pb-2">
       <ion-title
@@ -9,7 +12,6 @@
     </ion-toolbar>
   </ion-header>
   <ion-content>
-
     <div class="slider mb-5">
       <div class="slider-inner" id="slider" #slider>
         <img src="../../../../assets/images/slider/1.jpg" alt="" />

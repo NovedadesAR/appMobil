@@ -11,6 +11,7 @@ import { TabNavigationComponent } from './pages/tab-navigation/tab-navigation.co
 import { SliderProductsComponent } from './components/slider-products/slider-products.component';
 import { TitleCategoryComponent } from './components/title-category/title-category.component';
 import { LoaderComponent } from './components/loader/loader.component';
+import { ErrorPageComponent } from './components/error-page/error-page.component';
 
 
 @NgModule({
@@ -28,7 +29,11 @@ import { LoaderComponent } from './components/loader/loader.component';
     SliderProductsComponent,
     TitleCategoryComponent,
     LoaderComponent,
+    ErrorPageComponent,
 
+  ],
+  exports:[
+    ErrorPageComponent
   ]
 })
 export class HomePageModule {}
