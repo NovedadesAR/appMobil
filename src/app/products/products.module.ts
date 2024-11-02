@@ -4,11 +4,13 @@ import { CommonModule } from '@angular/common';
 import { ProductsRoutingModule } from './products-routing.module';
 import { ProductsByCategoryComponent } from './pages/products-by-category/products-by-category.component';
 import { IonicModule } from '@ionic/angular';
+import { ListProductsComponent } from './components/list-products/list-products.component';
 
 
 @NgModule({
   declarations: [
-    ProductsByCategoryComponent
+    ProductsByCategoryComponent,
+    ListProductsComponent
   ],
   imports: [
     CommonModule,
