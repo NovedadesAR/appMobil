@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { ProductsCategory } from '../../interfaces/ProductsByCategory.interface';
+import { ProductByName } from '../../interfaces/ProductsByName.interface';
 
 @Component({
   selector: 'app-list-products',
@@ -9,4 +10,10 @@ import { ProductsCategory } from '../../interfaces/ProductsByCategory.interface'
 export class ListProductsComponent {
   @Input()
   products:ProductsCategory[] = [];
+
+  @Input()
+  productsByName:ProductByName[] = [];
+
+  @Input()
+  type:string = '';
 }

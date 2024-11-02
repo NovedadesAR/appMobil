@@ -1,0 +1,31 @@
+
+<ion-header>
+  <ion-toolbar class="pb-3">
+    <ion-title class="font-bold text-3xl font-serif text-center text-black mt-2">Novedades A&R</ion-title>
+    <div class="flex items-center mx-2 gap-1">
+      <ion-buttons>
+        <ion-button routerLink="/home">
+          <ion-icon name="home-outline"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+      <input class="w-full outline-none" placeholder="Buscar" />
+    </div>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <div class="flex items-center gap-1 justify-end mb-5 px-1 pt-5">
+    <label for="order" class="font-semibold">Ordenar por:</label>
+    <select name="order" id="order" (ngModel)="order" (change)="orderProductsByOrder()">
+      <option value="" selected disabled>Elige una opcion</option>
+      <option value="desc">Mayor precio</option>
+      <option value="asc">Menor precio</option>
+    </select>
+    <label for="filter">Filtar por:</label>
+    <select name="filter" id="filter">
+      <option value="T">Todos</option>
+      <option value="M">Caballero</option>
+      <option value="F">Dama</option>
+    </select>
+  </div>
+  <app-list-products [products]="products"></app-list-products>
+</ion-content>
