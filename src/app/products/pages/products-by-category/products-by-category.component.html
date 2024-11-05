@@ -9,13 +9,18 @@
   </ion-toolbar>
 </div>
 <ion-content>
-  <div class="flex items-center gap-1 justify-end mb-5 px-1 pt-5">
-    <label for="order" class="font-semibold">Ordenar por:</label>
-    <select name="order" id="order" (ngModel)="order" (change)="orderProductsByOrder()">
-      <option value="" selected disabled>Elige una opcion</option>
-      <option value="desc">Mayor precio</option>
-      <option value="asc">Menor precio</option>
-    </select>
-  </div>
-  <app-list-products [products]="products"></app-list-products>
+  <section *ngIf="products.length > 0">
+    <div class="flex items-center gap-1 justify-end mb-5 px-1 pt-5">
+      <label for="order" class="font-semibold">Ordenar por:</label>
+      <select name="order" id="order" (ngModel)="order" (change)="orderProductsByOrder()">
+        <option value="" selected disabled>Elige una opcion</option>
+        <option value="desc">Mayor precio</option>
+        <option value="asc">Menor precio</option>
+      </select>
+    </div>
+    <app-list-products [products]="products"></app-list-products>
+  </section>
+  <section *ngIf="products.length <= 0">
+    <app-product-not-found></app-product-not-found>
+  </section>
 </ion-content>

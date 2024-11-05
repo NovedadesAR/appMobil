@@ -6,13 +6,15 @@ import { ProductsByCategoryComponent } from './pages/products-by-category/produc
 import { IonicModule } from '@ionic/angular';
 import { ListProductsComponent } from './components/list-products/list-products.component';
 import { ProductsByNameComponent } from './pages/products-by-name/products-by-name.component';
+import { ProductNotFoundComponent } from './components/product-not-found/product-not-found.component';
 
 
 @NgModule({
   declarations: [
     ProductsByCategoryComponent,
     ListProductsComponent,
-    ProductsByNameComponent
+    ProductsByNameComponent,
+    ProductNotFoundComponent
   ],
   imports: [
     CommonModule,
