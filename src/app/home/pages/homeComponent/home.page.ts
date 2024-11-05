@@ -7,6 +7,8 @@ import {
 } from '@angular/core';
 import { HomeService } from '../../services/home.service';
 import { ProductoIni } from '../../interfaces/Data-home.interface';
+import { FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -14,7 +16,11 @@ import { ProductoIni } from '../../interfaces/Data-home.interface';
   styleUrls: ['home.page.css'],
 })
 export class HomePage implements AfterViewInit, OnInit {
-  constructor(private homeService: HomeService) {}
+  constructor(
+    private homeService: HomeService,
+    private fb:FormBuilder,
+    private router:Router,
+  ) {}
 
   @ViewChild('slider') slider!: ElementRef;
 
@@ -26,6 +32,10 @@ export class HomePage implements AfterViewInit, OnInit {
 
 
   public faildConection:boolean = false;
+
+  public searchForm = this.fb.group({
+    search: ['',[Validators.required]],
+  });
 
 
   selectImage(element: ElementRef) {
@@ -57,5 +67,12 @@ export class HomePage implements AfterViewInit, OnInit {
 
   public reloadPage(){
     this.ngOnInit();
+  }
+  public serachProduct(){
+    console.log(this.searchForm.controls['search'].value)
+    if(this.searchForm.invalid) return;
+    const value = this.searchForm.controls['search'].value;
+    this.searchForm.reset();
+    this.router.navigate([`/products/name/${value}`]);
   }
 }

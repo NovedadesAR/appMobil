@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { HomePageRoutingModule } from './home-routing.module';
 import { HomePage } from './pages/homeComponent/home.page';
@@ -21,7 +21,7 @@ import { ErrorPageComponent } from './components/error-page/error-page.component
     IonicModule,
     HomePageRoutingModule,
     CarouselModule,
-
+    ReactiveFormsModule
 ],
   declarations: [
     HomePage,

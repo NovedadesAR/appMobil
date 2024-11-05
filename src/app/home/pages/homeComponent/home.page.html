@@ -8,7 +8,9 @@
         class="font-bold text-3xl font-serif text-center text-black mt-2"
         >Novedades A&R</ion-title
       >
-      <ion-searchbar placeholder="Buscar"></ion-searchbar>
+      <form (submit)="serachProduct()" [formGroup]="searchForm">
+        <ion-searchbar placeholder="Buscar" formControlName="search"></ion-searchbar>
+      </form>
     </ion-toolbar>
   </ion-header>
   <ion-content>
