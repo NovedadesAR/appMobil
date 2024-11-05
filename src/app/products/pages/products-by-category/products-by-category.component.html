@@ -1,20 +1,14 @@
-<ion-header>
-  <ion-toolbar class="pb-3">
-    <ion-title class="font-bold text-3xl font-serif text-center text-black mt-2">Novedades A&R</ion-title>
-    <div class="flex items-center mx-2 gap-1">
-      <ion-buttons>
-        <ion-button routerLink="/home">
-          <ion-icon name="home-outline"></ion-icon>
-        </ion-button>
-      </ion-buttons>
-      <input class="w-full outline-none" placeholder="Buscar" />
-    </div>
+<div>
+  <ion-toolbar>
+    <ion-buttons>
+      <ion-button routerLink="/home">
+        <ion-icon name="arrow-back-outline"></ion-icon>
+        <ion-title class="capitalize">{{checkTitleForCategory()}}</ion-title>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
-</ion-header>
+</div>
 <ion-content>
-  <div class="mx-2 mt-5">
-    <h3 class="text-2xl font-bold text-center">{{checkTitleForCategory()}}</h3>
-  </div>
   <div class="flex items-center gap-1 justify-end mb-5 px-1 pt-5">
     <label for="order" class="font-semibold">Ordenar por:</label>
     <select name="order" id="order" (ngModel)="order" (change)="orderProductsByOrder()">

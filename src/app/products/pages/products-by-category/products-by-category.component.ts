@@ -37,7 +37,7 @@ export class ProductsByCategoryComponent implements OnInit {
   public orderProductsByOrder() {
     this.products.sort((a, b) => {
       console.log(this.order)
-      if (this.order === 'asc') {
+      if (this.order === 'desc') {
         return a.precio - b.precio;
       } else {
         return b.precio - a.precio;
