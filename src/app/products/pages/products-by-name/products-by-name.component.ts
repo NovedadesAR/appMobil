@@ -10,14 +10,17 @@ import { toLower } from 'ionicons/dist/types/components/icon/utils';
   styleUrl: './products-by-name.component.css'
 })
 export class ProductsByNameComponent implements OnInit{
-  constructor(private producsService:ProductsService, private activateRoute:ActivatedRoute){}
+  constructor(
+    private producsService:ProductsService,
+    private activateRoute:ActivatedRoute
+  ){}
   public products:ProductByName[] = [];
   public order: string = 'asc';
+  public inputName:string = '';
   ngOnInit(): void {
     this.activateRoute.params.subscribe(params => {
-      const nameProduct = params['name'] as string;
-      this.producsService.getProductByName(nameProduct.toLowerCase()).subscribe(resp => {
-        console.log(resp.data)
+      this.inputName = params['name'] as string;
+      this.producsService.getProductByName(this.inputName.toLowerCase()).subscribe(resp => {
         this.products = resp.data;
       })
     })
@@ -25,7 +28,6 @@ export class ProductsByNameComponent implements OnInit{
 
   public orderProductsByOrder() {
     this.products.sort((a, b) => {
-      console.log(this.order)
       if (this.order === 'asc') {
         return a.precio - b.precio;
       } else {

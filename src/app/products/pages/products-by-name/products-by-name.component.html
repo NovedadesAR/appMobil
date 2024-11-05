@@ -1,17 +1,14 @@
 
-<ion-header>
-  <ion-toolbar class="pb-3">
-    <ion-title class="font-bold text-3xl font-serif text-center text-black mt-2">Novedades A&R</ion-title>
-    <div class="flex items-center mx-2 gap-1">
+  <ion-toolbar class="pb-1">
+    <div class="flex items-center gap-1">
+      <ion-searchbar [value]="inputName" class="w-full" placeholder="Buscar"></ion-searchbar>
       <ion-buttons>
-        <ion-button routerLink="/home">
-          <ion-icon name="home-outline"></ion-icon>
+        <ion-button routerLink="/home" class="capitalize text-gray-700">
+          Cancelar
         </ion-button>
       </ion-buttons>
-      <input class="w-full outline-none" placeholder="Buscar" />
     </div>
   </ion-toolbar>
-</ion-header>
 <ion-content>
   <div class="flex items-center gap-1 justify-end mb-5 px-1 pt-5">
     <label for="order" class="font-semibold">Ordenar por:</label>
