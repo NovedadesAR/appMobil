@@ -17,6 +17,7 @@ export class ViewProductComponent implements OnInit{
   public id:string = '';
   public imgSelected:string = '';
   public images:Imagen[] = [];
+  public routeBack:string = '';
   public product:Product = {
     id:              0,
     nombre_producto: '',
@@ -33,7 +34,9 @@ export class ViewProductComponent implements OnInit{
   };
 
   ngOnInit(): void {
+    console.log(this.productService.routeGet)
     this.getProductById();
+    this.routeToNavigation();
   }
 
   public getProductById(){
@@ -53,5 +56,20 @@ export class ViewProductComponent implements OnInit{
         this.imgSelected = img.url_imagen;
       }
     })
+  }
+
+  public routeToNavigation(){
+    if(this.productService.routeGet.category === '' && this.productService.routeGet.name === ''){
+      this.routeBack = `/home`;
+      console.log("va hacia el home")
+    }
+    else if(this.productService.routeGet.name === ''){
+      this.routeBack = `/products/category/${this.productService.routeGet.category}/gender/${this.productService.routeGet.gender}`;
+      console.log("va hacia las categorias")
+    }
+    else{
+      this.routeBack = `/products/name/${this.productService.routeGet.name}`;
+      console.log("va hacia el name")
+    }
   }
 }

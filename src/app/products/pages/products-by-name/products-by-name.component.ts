@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ProductsService } from '../../services/products.service';
+import { ProductsService, Route } from '../../services/products.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProductByName } from '../../interfaces/ProductsByName.interface';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -14,6 +14,7 @@ export class ProductsByNameComponent implements OnInit {
     private producsService: ProductsService,
     private activateRoute: ActivatedRoute,
     private fb:FormBuilder,
+    private router: Router,
   ) {}
   public products: ProductByName[] = [];
   public order: string = 'asc';
@@ -32,7 +33,8 @@ export class ProductsByNameComponent implements OnInit {
       this.inputName = params['name'] as string;
       this.searchForm.patchValue({
         search: this.inputName
-      })
+      });
+      this.saveRoute(this.inputName);
       this.producsService
         .getProductByName(this.inputName.toLowerCase())
         .subscribe((resp) => {
@@ -40,6 +42,14 @@ export class ProductsByNameComponent implements OnInit {
           this.isLoader = false;
         });
     });
+  }
+  public saveRoute(name:string, category:string = '',gender:string = ''){
+    const params:Route = {
+      name:name,
+      category:category,
+      gender:gender,
+    }
+    this.producsService.routerSet = params;
   }
   public searchProductByBar(){
     if(this.searchForm.invalid) return

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { ProductsService } from '../../services/products.service';
+import { ProductsService, Route } from '../../services/products.service';
 import { ProductsCategory } from '../../interfaces/ProductsByCategory.interface';
 
 @Component({
@@ -27,6 +27,7 @@ export class ProductsByCategoryComponent implements OnInit {
     this.activateRouter.params.subscribe((params) => {
       const category = params['category'];
       const gender = params['gender'];
+      this.saveRoute('',category, gender)
       this.title = category;
       this.gender = gender;
 
@@ -47,6 +48,14 @@ export class ProductsByCategoryComponent implements OnInit {
       }
     });
     this.order = this.order === 'asc' ? 'desc' : 'asc';
+  }
+  public saveRoute(name:string = '', category:string,gender:string){
+    const params:Route = {
+      name:name,
+      category:category,
+      gender:gender,
+    }
+    this.productsService.routerSet = params;
   }
 
   public checkTitleForCategory() {
