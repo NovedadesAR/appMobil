@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { ProductsCategory } from '../interfaces/ProductsByCategory.interface';
 import { ResProductByName } from '../interfaces/ProductsByName.interface';
+import { Product } from '../interfaces/Product.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -17,5 +18,8 @@ export class ProductsService {
   }
   public getProductByName(name:string){
     return this.http.get<ResProductByName>(`${this.url_api}products/search-by-name/${name}`);
+  }
+  public getProductById(id:string){
+    return this.http.get<Product>(`${this.url_api}products/${id}`);
   }
 }
