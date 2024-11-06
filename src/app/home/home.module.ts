@@ -21,7 +21,7 @@ import { ErrorPageComponent } from './components/error-page/error-page.component
     IonicModule,
     HomePageRoutingModule,
     CarouselModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
 ],
   declarations: [
     HomePage,
