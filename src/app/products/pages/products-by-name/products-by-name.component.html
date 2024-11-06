@@ -12,7 +12,7 @@
     </div>
   </ion-toolbar>
 <ion-content>
-  <section *ngIf="!isLoader">
+  <section *ngIf="!isLoader && products.length > 0">
     <div class="flex items-center gap-1 justify-end mb-5 px-1 pt-5">
       <label for="order" class="font-semibold">Ordenar por:</label>
       <select name="order" id="order" (ngModel)="order" (change)="orderProductsByOrder()">
@@ -29,5 +29,6 @@
     </div>
     <app-list-products [products]="products"></app-list-products>
   </section>
+  <app-product-not-found *ngIf="products.length <= 0 && !isLoader"></app-product-not-found>
   <app-loader [isLoader]="isLoader"></app-loader>
 </ion-content>
