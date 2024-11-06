@@ -7,6 +7,8 @@ import { IonicModule } from '@ionic/angular';
 import { ListProductsComponent } from './components/list-products/list-products.component';
 import { ProductsByNameComponent } from './pages/products-by-name/products-by-name.component';
 import { ProductNotFoundComponent } from './components/product-not-found/product-not-found.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SharedModule } from '../shared/shared.module';
 
 
 @NgModule({
@@ -18,8 +20,11 @@ import { ProductNotFoundComponent } from './components/product-not-found/product
   ],
   imports: [
     CommonModule,
+    ReactiveFormsModule,
+    FormsModule,
     IonicModule,
-    ProductsRoutingModule
+    ProductsRoutingModule,
+    SharedModule
   ]
 })
 export class ProductsModule { }
