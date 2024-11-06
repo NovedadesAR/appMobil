@@ -10,13 +10,13 @@
 
 <div *ngIf="!isLoader" class="products my-5 mx-4">
   <div *ngFor="let item of products" class="vendido relative">
-    <img [src]="item.imagen[0].url_imagen" alt="" class="h-56 w-full" />
+    <img [src]="item.imagen[0].url_imagen" alt="" class="h-56 w-full" routerLink="/products/view/{{item.id}}"/>
     <button
       class="flex items-center justify-center py-2 px-2 absolute z-10 top-1 right-1 rounded-lg bg-white text-black shadow-md"
     >
       <ion-icon name="cart-outline"></ion-icon>
     </button>
-    <div>
+    <div routerLink="/products/view/{{item.id}}">
       <p class="name capitalize font-semibold">{{ item.nombre_producto }}</p>
     </div>
   </div>
