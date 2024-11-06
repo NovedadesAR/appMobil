@@ -1,51 +1,54 @@
 <ion-content>
-  <section class="w-screen relative">
-    <div class="absolute top-2">
-      <ion-buttons>
-        <ion-button>
-          <ion-icon class="text-2xl" name="chevron-back-outline"></ion-icon>
-        </ion-button>
-      </ion-buttons>
-    </div>
-    <div class="flex w-full justify-center">
-        <img [src]="imgSelected" alt="Product">
-    </div>
-    <div class="mt-3 flex justify-evenly">
-      <img (click)="changeImg(imagen.id)" *ngFor="let imagen of product.imagen" [src]="imagen.url_imagen" alt="product" class="w-1/4 rounded-md px-1">
-    </div>
-  </section>
-  <section class="mx-2 my-5">
-    <h3 class="capitalize">{{product.nombre_producto}}</h3>
-    <span>${{product.precio}}.00</span>
-    <div class="flex justify-between text-md">
-      <p>Stock:</p>
-      <span>{{product.stock}} piezas</span>
-    </div>
-    <div class="flex flex-col gap-1 mt-3">
-      <button class="w-full bg-gray-600 text-white font-bold py-2 rounded-sm">Comprar</button>
-      <button class="w-full bg-gray-900 text-white font-bold py-2 rounded-sm">Agregar al carrito</button>
-    </div>
-  </section>
-  <hr>
-  <section class="mx-2 my-5">
-    <h4 class="text-lg font-semibold">Detalles del producto</h4>
-    <ul class="capitalize text-gray-600">
-      <li>{{product.descripccion}}</li>
-    </ul>
-  </section>
-  <hr>
-  <section class="mx-2 my-5">
-    <h5 class="text-lg font-semibold mb-5">Opiniones de clientes</h5>
-    <ul class="grid grid-cols-1 gap-3">
-      <li class="comentario p-3 capitalize rounded-md" *ngFor="let comentario of product.comentarios">
-        <div class="flex justify-between">
-          <h6>{{comentario.usuario}}</h6>
-          <span>{{comentario.fecha}}</span>
-        </div>
-        <div>
-          {{comentario.comentario}}
-        </div>
-      </li>
-    </ul>
-  </section>
+  <div *ngIf="!isLoader">
+    <section class="w-screen relative">
+      <div class="absolute top-2">
+        <ion-buttons>
+          <ion-button>
+            <ion-icon class="text-2xl" name="chevron-back-outline"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+      </div>
+      <div class="flex w-full justify-center">
+          <img [src]="imgSelected" alt="Product">
+      </div>
+      <div class="mt-3 flex justify-evenly">
+        <img (click)="changeImg(imagen.id)" *ngFor="let imagen of product.imagen" [src]="imagen.url_imagen" alt="product" class="w-1/4 rounded-md px-1">
+      </div>
+    </section>
+    <section class="mx-2 my-5">
+      <h3 class="capitalize">{{product.nombre_producto}}</h3>
+      <span>${{product.precio}}.00</span>
+      <div class="flex justify-between text-md">
+        <p>Stock:</p>
+        <span>{{product.stock}} piezas</span>
+      </div>
+      <div class="flex flex-col gap-1 mt-3">
+        <button class="w-full bg-gray-600 text-white font-bold py-2 rounded-sm">Comprar</button>
+        <button class="w-full bg-gray-900 text-white font-bold py-2 rounded-sm">Agregar al carrito</button>
+      </div>
+    </section>
+    <hr>
+    <section class="mx-2 my-5">
+      <h4 class="text-lg font-semibold">Detalles del producto</h4>
+      <ul class="capitalize text-gray-600">
+        <li>{{product.descripccion}}</li>
+      </ul>
+    </section>
+    <hr>
+    <section class="mx-2 my-5">
+      <h5 class="text-lg font-semibold mb-5">Opiniones de clientes</h5>
+      <ul class="grid grid-cols-1 gap-3">
+        <li class="comentario p-3 capitalize rounded-md" *ngFor="let comentario of product.comentarios">
+          <div class="flex justify-between">
+            <h6>{{comentario.usuario}}</h6>
+            <span>{{comentario.fecha}}</span>
+          </div>
+          <div>
+            {{comentario.comentario}}
+          </div>
+        </li>
+      </ul>
+    </section>
+  </div>
+  <app-loader [isLoader]="isLoader"></app-loader>
 </ion-content>

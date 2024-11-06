@@ -13,6 +13,7 @@ export class ViewProductComponent implements OnInit{
     private activateRouter:ActivatedRoute,
     private productService:ProductsService,
   ){}
+  public isLoader:boolean = true;
   public id:string = '';
   public imgSelected:string = '';
   public images:Imagen[] = [];
@@ -42,6 +43,7 @@ export class ViewProductComponent implements OnInit{
         this.product = res;
         this.images = res.imagen;
         this.imgSelected = this.images[0].url_imagen;
+        this.isLoader = false;
       })
     })
   }
