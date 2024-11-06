@@ -9,6 +9,7 @@ import { ProductsByNameComponent } from './pages/products-by-name/products-by-na
 import { ProductNotFoundComponent } from './components/product-not-found/product-not-found.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '../shared/shared.module';
+import { ViewProductComponent } from './pages/view-product/view-product.component';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import { SharedModule } from '../shared/shared.module';
     ProductsByCategoryComponent,
     ListProductsComponent,
     ProductsByNameComponent,
-    ProductNotFoundComponent
+    ProductNotFoundComponent,
+    ViewProductComponent
   ],
   imports: [
     CommonModule,
