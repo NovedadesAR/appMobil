@@ -6,4 +6,110 @@
     </ion-button>
   </ion-buttons>
 </ion-toolbar>
-<ion-content></ion-content>
+<ion-content>
+  <h1 class="text-xl text-center">Metodos de seguridad</h1>
+  <form class="mx-3 my-5 flex flex-col gap-3" [formGroup]="formSecurity">
+    <div class="flex flex-col">
+      <label for="question" class="text-sm text-gray-600">Pregunta secreta</label>
+      <div class="w-full flex justify-center">
+        <input
+          formControlName="question"
+          [type]="showQuestion ? 'text': 'password'"
+          id="question"
+          name="question"
+          class="outline-none border-b-2 text-md bg-white w-full"
+        />
+        <ion-buttons *ngIf="!showQuestion" (click)="showQuestion = true">
+          <ion-button>
+            <ion-icon name="eye-outline"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+        <ion-buttons *ngIf="showQuestion" (click)="showQuestion = false">
+          <ion-button>
+            <ion-icon name="eye-off-outline"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+      </div>
+    </div>
+    <div class="flex flex-col">
+      <label for="answer" class="text-sm text-gray-600">Respuesta</label>
+      <div class="w-full flex justify-center">
+        <input
+          formControlName="answer"
+          [type]="showAnswer ? 'text': 'password'"
+          id="answer"
+          name="answer"
+          class="outline-none border-b-2 text-md bg-white w-full"
+        />
+        <ion-buttons *ngIf="!showAnswer" (click)="showAnswer = true">
+          <ion-button>
+            <ion-icon name="eye-outline"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+        <ion-buttons *ngIf="showAnswer" (click)="showAnswer = false">
+          <ion-button>
+            <ion-icon name="eye-off-outline"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+      </div>
+    </div>
+    <div>
+      <button
+        *ngIf="!isEdit"
+        (click)="editForm()"
+        class="bg-gray-800 py-2 px-3 text-white font-bold w-full"
+      >
+        Editar informacion
+      </button>
+      <button
+        *ngIf="isEdit"
+        (click)="editForm()"
+        class="bg-gray-800 py-2 px-3 text-white font-bold w-full"
+      >
+        Guardar cambios
+      </button>
+    </div>
+  </form>
+
+  <form class="mx-3 my-5 flex flex-col gap-3" [formGroup]="formPassword">
+    <div class="flex flex-col">
+      <label for="password" class="text-sm text-gray-600">Password</label>
+      <div class="w-full flex justify-center">
+        <input
+          formControlName="password"
+          [type]="showPass ? 'text': 'password'"
+          id="password"
+          name="password"
+          class="outline-none border-b-2 text-md bg-white w-full"
+        />
+      </div>
+    </div>
+    <div class="flex flex-col" *ngIf="isChangePassword">
+      <label for="passwordConfirm" class="text-sm text-gray-600">Confirma la contraseña</label>
+      <div class="w-full flex justify-center">
+        <input
+          formControlName="passwordConfirm"
+          [type]="showAnswer ? 'text': 'password'"
+          id="passwordConfirm"
+          name="passwordConfirm"
+          class="outline-none border-b-2 text-md bg-white w-full"
+        />
+      </div>
+    </div>
+    <div>
+      <button
+        *ngIf="!isEdit"
+        (click)="changePassword()"
+        class="bg-gray-800 py-2 px-3 text-white font-bold w-full"
+      >
+        Editar informacion
+      </button>
+      <button
+        *ngIf="isEdit"
+        class="bg-gray-800 py-2 px-3 text-white font-bold w-full"
+      >
+        Guardar cambios
+      </button>
+    </div>
+  </form>
+</ion-content>
