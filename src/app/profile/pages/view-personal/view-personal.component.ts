@@ -65,4 +65,9 @@ export class ViewPersonalComponent implements OnInit{
       });
     }
   }
+  public updatePersonal(form:FormGroup){
+    if(form.invalid) return;
+
+    console.log(form.value);
+  }
 }

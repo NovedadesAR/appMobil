@@ -11,5 +11,5 @@
   <div class="flex justify-center mt-5">
     <img src="../../../../assets/icon/image.png" alt="user" class="h-32 rounded-full">
   </div>
-  <app-form-profile [form]="personalForm" [inputsForm]="dataInput"></app-form-profile>
+  <app-form-profile [form]="personalForm" [inputsForm]="dataInput" (formEmit)="updatePersonal($event)"></app-form-profile>
 </ion-content>
