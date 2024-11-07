@@ -16,6 +16,9 @@ export class ViewAccountComponent implements OnInit{
     private fb:FormBuilder,
   ) { }
   private jwtHelper = new JwtHelperService();
+  private idUser!:string;
+
+  public openToast:boolean = false;
   public dataAccount!:RespCuenta;
   public accountForm:FormGroup = this.fb.group({
     email:[''],
@@ -33,12 +36,24 @@ export class ViewAccountComponent implements OnInit{
     const token = localStorage.getItem('token');
     if(token){
       const decodeToken = this.jwtHelper.decodeToken(token);
-      this.profileServile.getDataAccount(decodeToken.sub).subscribe(res => {
+      this.idUser = decodeToken.sub;
+      this.profileServile.getDataAccount(this.idUser).subscribe(res => {
         this.dataAccount = res;
         this.accountForm.patchValue(this.dataAccount);
         this.accountForm.disable();
       })
 
     }
+  }
+  public updateDataPersonal(form:FormGroup){
+    if(form.invalid) return;
+    this.profileServile.updateUserCuenta(this.idUser, form.value).subscribe(res => {
+      if(res.status === 200){
+        this.openToast = true;
+        setTimeout(() => {
+          this.openToast = false;
+        }, 3000)
+      }
+    });
   }
 }

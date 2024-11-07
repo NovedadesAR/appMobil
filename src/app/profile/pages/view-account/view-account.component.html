@@ -8,5 +8,6 @@
 </ion-toolbar>
 <ion-content>
   <h1 class="text-xl text-center">Datos de la cuenta</h1>
-  <app-form-profile [form]="accountForm" [inputsForm]="dataInputs"></app-form-profile>
+  <app-form-profile [form]="accountForm" [inputsForm]="dataInputs" (formEmit)="updateDataPersonal($event)"></app-form-profile>
+  <app-toas-form [isOpen]="openToast"></app-toas-form>
 </ion-content>
