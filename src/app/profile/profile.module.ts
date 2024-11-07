@@ -8,6 +8,8 @@ import { ViewPersonalComponent } from './pages/view-personal/view-personal.compo
 import { ViewAccountComponent } from './pages/view-account/view-account.component';
 import { ViewSecurityComponent } from './pages/view-security/view-security.component';
 import { ViewEnviosComponent } from './pages/view-envios/view-envios.component';
+import { MyShoppingComponent } from './pages/my-shopping/my-shopping.component';
+import { ShoppingCarComponent } from './pages/shopping-car/shopping-car.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +17,9 @@ import { ViewEnviosComponent } from './pages/view-envios/view-envios.component';
     ViewPersonalComponent,
     ViewAccountComponent,
     ViewSecurityComponent,
-    ViewEnviosComponent
+    ViewEnviosComponent,
+    MyShoppingComponent,
+    ShoppingCarComponent
   ],
   imports: [
     CommonModule,

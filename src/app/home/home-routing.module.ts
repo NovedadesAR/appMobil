@@ -4,6 +4,8 @@ import { HomePage } from './pages/homeComponent/home.page';
 import { TabNavigationComponent } from './pages/tab-navigation/tab-navigation.component';
 import { AccountComponent } from '../profile/pages/account/account.component';
 import { accountMatchGuard } from '../profile/guards/account-match.guard';
+import { MyShoppingComponent } from '../profile/pages/my-shopping/my-shopping.component';
+import { ShoppingCarComponent } from '../profile/pages/shopping-car/shopping-car.component';
 
 const routes: Routes = [
   {
@@ -18,6 +20,14 @@ const routes: Routes = [
         path: 'account',
         component:AccountComponent,
         canMatch:[accountMatchGuard],
+      },
+      {
+        path:'my-shopping',
+        component:MyShoppingComponent
+      },
+      {
+        path:'car',
+        component:ShoppingCarComponent
       }
     ],
   },
