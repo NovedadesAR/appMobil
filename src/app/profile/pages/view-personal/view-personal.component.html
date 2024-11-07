@@ -7,29 +7,34 @@
   </ion-buttons>
 </ion-toolbar>
 <ion-content class="ion-padding">
-  <div class="flex justify-center h-32">
-    <img src="../../../../assets/icon/image.png" alt="user" class="rounded-full">
+  <h1 class="text-xl text-center">Datos personales</h1>
+  <div class="flex justify-center mt-5">
+    <img src="../../../../assets/icon/image.png" alt="user" class="h-32 rounded-full">
   </div>
-  <form class="mx-5 my-5 flex flex-col gap-3">
+  <form class="mx-3 my-5 flex flex-col gap-3" [formGroup]="personalForm">
     <div class="flex flex-col">
       <label for="name" class="text-sm text-gray-600">Nombre</label>
-      <input type="text" id="name" name="name" class="outline-none border-b-2 text-md uppercase" value="Luis">
+      <input formControlName="name" type="text" id="name" name="name" class="outline-none border-b-2 text-md uppercase bg-white">
     </div>
     <div class="flex flex-col">
-      <label for="name" class="text-sm text-gray-600">Apellido paterno</label>
-      <input type="text" id="lastname" name="lastname" class="outline-none border-b-2 text-md uppercase" value="Escalante">
+      <label for="lastname" class="text-sm text-gray-600">Apellido paterno</label>
+      <input formControlName="lastname" type="text" id="lastname" name="lastname" class="outline-none border-b-2 text-md uppercase bg-white">
     </div>
     <div class="flex flex-col">
-      <label for="name" class="text-sm text-gray-600">Apellido materno</label>
-      <input type="text" id="motherLastname" name="motherLastname" class="outline-none border-b-2 text-md uppercase" value="Cruz">
+      <label for="motherlastname" class="text-sm text-gray-600">Apellido materno</label>
+      <input formControlName="motherLastname" type="text" id="motherLastname" name="motherLastname" class="outline-none border-b-2 text-md uppercase bg-white">
     </div>
     <div class="flex flex-col">
-      <label for="name" class="text-sm text-gray-600">Genero</label>
-      <input type="text" id="gender" name="gender" class="outline-none border-b-2 text-md uppercase" value="M">
+      <label for="gender" class="text-sm text-gray-600">Genero</label>
+      <input formControlName="gender" type="text" id="gender" name="gender" class="outline-none border-b-2 text-md uppercase bg-white">
     </div>
     <div class="flex flex-col">
-      <label for="name" class="text-sm text-gray-600">Fecha de nacimiento</label>
-      <input type="date" id="birthday" name="birthday" class="outline-none border-b-2 text-md">
+      <label for="birthdate" class="text-sm text-gray-600">Fecha de nacimiento</label>
+      <input formControlName="birthdate" type="date" id="birthdate" name="birthdate" class="outline-none border-b-2 text-md bg-white">
+    </div>
+    <div>
+      <button *ngIf="!isEdit" (click)="editForm()" class="bg-gray-800 py-2 px-3 text-white font-bold w-full">Editar informacion</button>
+      <button *ngIf="isEdit" (click)="editForm()" class="bg-gray-800 py-2 px-3 text-white font-bold w-full">Guardar cambios</button>
     </div>
   </form>
 </ion-content>

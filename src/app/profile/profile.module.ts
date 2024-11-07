@@ -10,6 +10,7 @@ import { ViewSecurityComponent } from './pages/view-security/view-security.compo
 import { ViewEnviosComponent } from './pages/view-envios/view-envios.component';
 import { MyShoppingComponent } from './pages/my-shopping/my-shopping.component';
 import { ShoppingCarComponent } from './pages/shopping-car/shopping-car.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { ShoppingCarComponent } from './pages/shopping-car/shopping-car.componen
   imports: [
     CommonModule,
     ProfileRoutingModule,
-    IonicModule
+    IonicModule,
+    ReactiveFormsModule
   ]
 })
 export class ProfileModule { }
