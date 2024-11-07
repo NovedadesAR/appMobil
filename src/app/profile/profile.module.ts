@@ -9,8 +9,6 @@ import { ViewAccountComponent } from './pages/view-account/view-account.componen
 import { ViewSecurityComponent } from './pages/view-security/view-security.component';
 import { ViewEnviosComponent } from './pages/view-envios/view-envios.component';
 
-
-
 @NgModule({
   declarations: [
     AccountComponent,

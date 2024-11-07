@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomePage } from './pages/homeComponent/home.page';
 import { TabNavigationComponent } from './pages/tab-navigation/tab-navigation.component';
+import { AccountComponent } from '../profile/pages/account/account.component';
+import { accountMatchGuard } from '../profile/guards/account-match.guard';
 
 const routes: Routes = [
   {
@@ -13,9 +15,9 @@ const routes: Routes = [
         component: HomePage,
       },
       {
-        path: '',
-        loadChildren: () =>
-          import('../profile/profile.module').then((m) => m.ProfileModule),
+        path: 'account',
+        component:AccountComponent,
+        canMatch:[accountMatchGuard],
       }
     ],
   },

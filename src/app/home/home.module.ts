@@ -12,6 +12,7 @@ import { SliderProductsComponent } from './components/slider-products/slider-pro
 import { TitleCategoryComponent } from './components/title-category/title-category.component';
 import { LoaderComponent } from './components/loader/loader.component';
 import { ErrorPageComponent } from './components/error-page/error-page.component';
+import { ProfileModule } from '../profile/profile.module';
 
 
 @NgModule({
@@ -22,6 +23,7 @@ import { ErrorPageComponent } from './components/error-page/error-page.component
     HomePageRoutingModule,
     CarouselModule,
     ReactiveFormsModule,
+    ProfileModule
 ],
   declarations: [
     HomePage,
@@ -30,7 +32,6 @@ import { ErrorPageComponent } from './components/error-page/error-page.component
     TitleCategoryComponent,
     LoaderComponent,
     ErrorPageComponent,
-
   ],
   exports:[
     ErrorPageComponent

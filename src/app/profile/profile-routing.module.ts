@@ -1,15 +1,26 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AccountComponent } from './pages/account/account.component';
-import { accountMatchGuard } from './guards/account-match.guard';
-import { accountActivateGuard } from './guards/account-activate.guard';
+import { ViewPersonalComponent } from './pages/view-personal/view-personal.component';
+import { ViewAccountComponent } from './pages/view-account/view-account.component';
+import { ViewSecurityComponent } from './pages/view-security/view-security.component';
+import { ViewEnviosComponent } from './pages/view-envios/view-envios.component';
 
 const routes: Routes = [
   {
-    path:'account',
-    component:AccountComponent,
-    //canActivate:[accountActivateGuard],
-    canMatch:[accountMatchGuard],
+    path:'view-personal',
+    component:ViewPersonalComponent
+  },
+  {
+    path:'view-account',
+    component:ViewAccountComponent
+  },
+  {
+    path:'view-security',
+    component:ViewSecurityComponent
+  },
+  {
+    path:'view-envio',
+    component:ViewEnviosComponent
   },
   {
     path:'',
