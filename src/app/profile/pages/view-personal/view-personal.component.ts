@@ -11,12 +11,17 @@ import { Form } from '../../interfaces/Form.interface';
   styleUrl: './view-personal.component.css'
 })
 export class ViewPersonalComponent implements OnInit{
+
   constructor(
     private profileService:ProfileService,
     private fb:FormBuilder,
   ){}
+
+  private idUser!:string;
   private jwtHelper = new JwtHelperService();
   public user!:RespPersonal;
+  public openToast:boolean = false;
+
   public personalForm:FormGroup = this.fb.group({
     name: [''],
     lastname: [''],
@@ -50,7 +55,8 @@ export class ViewPersonalComponent implements OnInit{
       name: 'birthdate',
       type: 'date'
     }
-  ]
+  ];
+
   ngOnInit(): void {
     this.getDataUser();
   }
@@ -58,7 +64,8 @@ export class ViewPersonalComponent implements OnInit{
     const token = localStorage.getItem('token');
     if(token){
       const decodedToken = this.jwtHelper.decodeToken(token);
-      this.profileService.getDataPersonal(decodedToken.sub).subscribe(resp => {
+      this.idUser = decodedToken.sub;
+      this.profileService.getDataPersonal(this.idUser).subscribe(resp => {
         this.user = resp;
         this.personalForm.patchValue(this.user);
         this.personalForm.disable();
@@ -67,7 +74,21 @@ export class ViewPersonalComponent implements OnInit{
   }
   public updatePersonal(form:FormGroup){
     if(form.invalid) return;
-
-    console.log(form.value);
+    this.personalForm.patchValue({
+      name: form.value.name.trim().toLowerCase(),
+      lastname: form.value.lastname.trim().toLowerCase(),
+      motherLastname: form.value.motherLastname.trim().toLowerCase(),
+      gender: form.value.gender.trim().toLowerCase(),
+      birthdate: form.value.birthdate,
+    });
+    this.profileService.updateDataPersonal(this.idUser, form.value).subscribe(resp => {
+      if(resp.status === 200){
+        console.log("Entra")
+        this.openToast = true;
+        setTimeout(() => {
+          this.openToast = false;
+        }, 3000);
+      }
+    });
   }
 }

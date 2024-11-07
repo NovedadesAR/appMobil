@@ -12,6 +12,7 @@ import { MyShoppingComponent } from './pages/my-shopping/my-shopping.component';
 import { ShoppingCarComponent } from './pages/shopping-car/shopping-car.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormProfileComponent } from './components/form-profile/form-profile.component';
+import { ToasFormComponent } from './components/toas-form/toas-form.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { FormProfileComponent } from './components/form-profile/form-profile.com
     ViewEnviosComponent,
     MyShoppingComponent,
     ShoppingCarComponent,
-    FormProfileComponent
+    FormProfileComponent,
+    ToasFormComponent
   ],
   imports: [
     CommonModule,
