@@ -1,0 +1,10 @@
+<form class="mx-3 my-5 flex flex-col gap-3" [formGroup]="form">
+  <div class="flex flex-col" *ngFor="let item of inputsForm">
+    <label [for]="item.name" class="text-sm text-gray-600">{{item.label}}</label>
+    <input [formControlName]="item.name" [type]="item.type" [id]="item.name" [name]="item.name" class="outline-none border-b-2 text-md uppercase bg-white">
+  </div>
+  <div>
+    <button *ngIf="!isEdit" (click)="editForm()" class="bg-gray-800 py-2 px-3 text-white font-bold w-full">Editar informacion</button>
+    <button *ngIf="isEdit" (click)="editForm()" class="bg-gray-800 py-2 px-3 text-white font-bold w-full">Guardar cambios</button>
+  </div>
+</form>

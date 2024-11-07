@@ -3,6 +3,7 @@ import { ProfileService } from '../../services/profile.service';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { RespPersonal } from '../../interfaces/DataProfile.interface';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { Form } from '../../interfaces/Form.interface';
 
 @Component({
   selector: 'app-view-personal',
@@ -23,11 +24,36 @@ export class ViewPersonalComponent implements OnInit{
     gender: [''],
     birthdate: ['']
   });
-  isEdit:boolean = false;
+  public dataInput:Form[] = [
+    {
+      label: 'Nombre',
+      name: 'name',
+      type: 'text'
+    },
+    {
+      label: 'Apellido paterno',
+      name: 'lastname',
+      type: 'text'
+    },
+    {
+      label: 'Apellido materno',
+      name:'motherLastname',
+      type: 'text'
+    },
+    {
+      label: 'Género',
+      name: 'gender',
+      type: 'text'
+    },
+    {
+      label: 'Fecha de nacimiento',
+      name: 'birthdate',
+      type: 'date'
+    }
+  ]
   ngOnInit(): void {
     this.getDataUser();
   }
-
   public getDataUser(){
     const token = localStorage.getItem('token');
     if(token){
@@ -38,13 +64,5 @@ export class ViewPersonalComponent implements OnInit{
         this.personalForm.disable();
       });
     }
-  }
-
-  public editForm(){
-    this.isEdit =! this.isEdit;
-    if(this.isEdit)
-      this.personalForm.enable();
-    else
-      this.personalForm.disable();
   }
 }

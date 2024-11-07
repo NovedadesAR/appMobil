@@ -11,6 +11,7 @@ import { ViewEnviosComponent } from './pages/view-envios/view-envios.component';
 import { MyShoppingComponent } from './pages/my-shopping/my-shopping.component';
 import { ShoppingCarComponent } from './pages/shopping-car/shopping-car.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { FormProfileComponent } from './components/form-profile/form-profile.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     ViewSecurityComponent,
     ViewEnviosComponent,
     MyShoppingComponent,
-    ShoppingCarComponent
+    ShoppingCarComponent,
+    FormProfileComponent
   ],
   imports: [
     CommonModule,
