@@ -28,7 +28,7 @@ export class ProfileService {
     return this.http.get<RespPersonal>(`${this.urlApi}users/profile/personal/${id}`)
   }
   public getDataAccount(id:string){
-    return this.http.get<RespCuenta>(`${this.urlApi}users/profile/personal/${id}`)
+    return this.http.get<RespCuenta>(`${this.urlApi}users/profile/cuenta/${id}`)
   }
   public getDataSegurity(id:string){
     return this.http.get<RespSeguridad>(`${this.urlApi}users/profile/seguridad/${id}`)
