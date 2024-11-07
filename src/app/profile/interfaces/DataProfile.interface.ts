@@ -24,3 +24,7 @@ export interface RespEnvio{
   colonia:string;
   referencia:string;
 }
+export interface RespUpdate{
+  status:number;
+  message:string;
+}

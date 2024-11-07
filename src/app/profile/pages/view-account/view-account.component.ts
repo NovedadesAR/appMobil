@@ -36,6 +36,7 @@ export class ViewAccountComponent implements OnInit{
       this.profileServile.getDataAccount(decodeToken.sub).subscribe(res => {
         this.dataAccount = res;
         this.accountForm.patchValue(this.dataAccount);
+        this.accountForm.disable();
       })
 
     }
