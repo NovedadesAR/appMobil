@@ -9,6 +9,7 @@ import { HomeService } from '../../services/home.service';
 import { ProductoIni } from '../../interfaces/Data-home.interface';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ProductsService, Route } from 'src/app/products/services/products.service';
 
 @Component({
   selector: 'app-home',
@@ -20,6 +21,7 @@ export class HomePage implements AfterViewInit, OnInit {
     private homeService: HomeService,
     private fb:FormBuilder,
     private router:Router,
+    private productService:ProductsService
   ) {}
 
   @ViewChild('slider') slider!: ElementRef;
@@ -59,11 +61,21 @@ export class HomePage implements AfterViewInit, OnInit {
       this.caballero = res.caballero;
       this.isLoader = false;
       this.faildConection = false;
+      // this.saveRoute();
     },(Error)=>{
       console.log("Hay error")
       this.faildConection = true;
     });
   }
+
+  // public saveRoute(){
+  //   const params:Route = {
+  //     name:'',
+  //     category:'',
+  //     gender:'',
+  //   }
+  //   this.productService.routerSet = params;
+  // }
 
   public reloadPage(){
     this.ngOnInit();

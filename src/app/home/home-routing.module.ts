@@ -28,6 +28,11 @@ const routes: Routes = [
       {
         path:'car',
         component:ShoppingCarComponent
+      },
+      {
+        path:'',
+        redirectTo:'home',
+        pathMatch:'full'
       }
     ],
   },
