@@ -10,6 +10,7 @@
       [name]="item.name"
       class="outline-none border-b-2 text-md bg-white"
       [ngClass]="{ uppercase: item.type !== 'email' }"
+      (keyup)="item.name === 'cp' ? codePostalChange():undefined"
     />
   </div>
   <div>

@@ -4,6 +4,7 @@ import { environment } from 'src/environments/environment';
 import { Profile } from '../interfaces/Profile.interfac';
 import { RespCuenta, RespEnvio, RespPersonal, RespSeguridad, RespUpdate } from '../interfaces/DataProfile.interface';
 import { UpdatCuenta, UpdatPersonal, UpdatSeguridad, UpdatUbicacion } from '../interfaces/UpdateProfile.interfas';
+import { RespCopomex } from '../interfaces/ResponseCopomex.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -37,6 +38,9 @@ export class ProfileService {
   }
   public getUbication(id:string){
     return this.http.get<RespEnvio>(`${this.urlApi}users/profile/ubicacion/${id}`)
+  }
+  getDataCopomex(cp: string) {
+    return this.http.get<RespCopomex>(`https://api.copomex.com/query/info_cp/${cp}?type=simplified&token=pruebas`);
   }
   /** Metodos para actualizar las informacion */
   public updateDataPersonal(id:string,data: UpdatPersonal){

@@ -18,6 +18,7 @@ export class ViewAccountComponent implements OnInit{
   private jwtHelper = new JwtHelperService();
   private idUser!:string;
 
+  public isLoader:boolean = true;
   public openToast:boolean = false;
   public dataAccount!:RespCuenta;
   public accountForm:FormGroup = this.fb.group({
@@ -41,6 +42,7 @@ export class ViewAccountComponent implements OnInit{
         this.dataAccount = res;
         this.accountForm.patchValue(this.dataAccount);
         this.accountForm.disable();
+        this.isLoader = false;
       })
 
     }

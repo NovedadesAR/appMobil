@@ -11,21 +11,21 @@ import { Form } from '../../interfaces/Form.interface';
 })
 export class ViewEnviosComponent implements OnInit{
   constructor(
-    private ProfileService: ProfileService,
+    private profileService: ProfileService,
     private fb:FormBuilder,
   ) { }
   private jwtHelper = new JwtHelperService();
   public formUbic:FormGroup = this.fb.group({
+    cp:[''],
     estado:[''],
     municipio:[''],
-    cp:[''],
     colonia:[''],
     referencia:[''],
   });
   public inputsUbic:Form[] = [
+    {label:'CP', name:'cp', type:'number'},
     {label:'Estado', name:'estado', type:'text'},
     {label:'Municipio', name:'municipio', type:'text'},
-    {label:'CP', name:'cp', type:'number'},
     {label:'Colonia', name:'colonia', type:'text'},
     {label:'Referencia', name:'referencia', type:'text'},
   ]
@@ -33,14 +33,19 @@ export class ViewEnviosComponent implements OnInit{
     this.getDataEnvio();
   }
 
-  getDataEnvio(){
+  public getDataEnvio(){
     const token = localStorage.getItem('token');
     if(token){
       const decodeToken = this.jwtHelper.decodeToken(token);
-      this.ProfileService.getUbication(decodeToken.sub).subscribe((res) => {
+      this.profileService.getUbication(decodeToken.sub).subscribe((res) => {
           this.formUbic.patchValue(res);
           this.formUbic.disable();
       });
     }
+  }
+  public searchUbication(code:string){
+    this.profileService.getDataCopomex(code).subscribe(resp => {
+      console.log(resp.response);
+    })
   }
 }

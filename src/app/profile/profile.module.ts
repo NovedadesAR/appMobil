@@ -13,6 +13,7 @@ import { ShoppingCarComponent } from './pages/shopping-car/shopping-car.componen
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormProfileComponent } from './components/form-profile/form-profile.component';
 import { ToasFormComponent } from './components/toas-form/toas-form.component';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { ToasFormComponent } from './components/toas-form/toas-form.component';
     CommonModule,
     ProfileRoutingModule,
     IonicModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    SharedModule,
   ]
 })
 export class ProfileModule { }

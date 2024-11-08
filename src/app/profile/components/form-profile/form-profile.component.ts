@@ -16,8 +16,11 @@ export class FormProfileComponent {
 
   @Output()
   formEmit = new EventEmitter<FormGroup>();
+  @Output()
+  codeCp = new EventEmitter<string>();
 
   public isConfirmation:boolean = false;
+  public isEdit: boolean = false;
 
   public alertButtons = [
     {
@@ -35,7 +38,6 @@ export class FormProfileComponent {
     },
   ];
 
-  isEdit: boolean = false;
   public editForm() {
     this.isEdit = !this.isEdit;
     if (this.isEdit) this.form.enable();
@@ -46,5 +48,10 @@ export class FormProfileComponent {
     this.formEmit.emit(this.form);
     this.isEdit = false;
     this.form.disable();
+  }
+  public codePostalChange(){
+    const code:string = this.form.controls['cp'].value;
+    if(code.length === 5)
+      this.codeCp.emit(code);
   }
 }

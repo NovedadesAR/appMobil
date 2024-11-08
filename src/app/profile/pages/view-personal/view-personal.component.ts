@@ -19,6 +19,8 @@ export class ViewPersonalComponent implements OnInit{
 
   private idUser!:string;
   private jwtHelper = new JwtHelperService();
+
+  public isLoader:boolean = true;
   public user!:RespPersonal;
   public openToast:boolean = false;
 
@@ -69,6 +71,7 @@ export class ViewPersonalComponent implements OnInit{
         this.user = resp;
         this.personalForm.patchValue(this.user);
         this.personalForm.disable();
+        this.isLoader = false;
       });
     }
   }
