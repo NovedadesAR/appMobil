@@ -46,6 +46,13 @@ export class ViewEnviosComponent implements OnInit{
   public searchUbication(code:string){
     this.profileService.getDataCopomex(code).subscribe(resp => {
       console.log(resp.response);
-    })
+      const resCop = {
+        cp: resp.response.cp,
+        estado: resp.response.estado,
+        municipio: resp.response.municipio,
+        colonia: resp.response.asentamiento[0],
+      }
+      this.formUbic.patchValue(resCop);
+    });
   }
 }

@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Form } from '../../interfaces/Form.interface';
 
@@ -7,17 +7,20 @@ import { Form } from '../../interfaces/Form.interface';
   templateUrl: './form-profile.component.html',
   styleUrl: './form-profile.component.css',
 })
-export class FormProfileComponent {
+export class FormProfileComponent{
 
   @Input()
   form!: FormGroup;
   @Input()
   inputsForm: Form[] = [];
 
+  backupForm:any;
+
   @Output()
   formEmit = new EventEmitter<FormGroup>();
   @Output()
   codeCp = new EventEmitter<string>();
+
 
   public isConfirmation:boolean = false;
   public isEdit: boolean = false;
@@ -39,9 +42,9 @@ export class FormProfileComponent {
   ];
 
   public editForm() {
-    this.isEdit = !this.isEdit;
-    if (this.isEdit) this.form.enable();
-    else this.form.disable();
+    this.backupForm = this.form.value;
+    this.isEdit = true;
+    this.form.enable();
   }
 
   public emitForm(){
@@ -53,5 +56,10 @@ export class FormProfileComponent {
     const code:string = this.form.controls['cp'].value;
     if(code.length === 5)
       this.codeCp.emit(code);
+  }
+  public cancelEdit(){
+    this.form.patchValue(this.backupForm);
+    this.isEdit = false;
+    this.form.disable();
   }
 }
