@@ -15,6 +15,8 @@ export class ViewEnviosComponent implements OnInit{
     private fb:FormBuilder,
   ) { }
   public options:string[] = [];
+  public openToast:boolean = false;
+  private idUser!:string;
   private jwtHelper = new JwtHelperService();
   public formUbic:FormGroup = this.fb.group({
     cp:[''],
@@ -38,7 +40,8 @@ export class ViewEnviosComponent implements OnInit{
     const token = localStorage.getItem('token');
     if(token){
       const decodeToken = this.jwtHelper.decodeToken(token);
-      this.profileService.getUbication(decodeToken.sub).subscribe((res) => {
+      this.idUser = decodeToken.sub;
+      this.profileService.getUbication(this.idUser).subscribe((res) => {
           this.formUbic.patchValue(res);
           this.formUbic.disable();
       });
@@ -55,5 +58,16 @@ export class ViewEnviosComponent implements OnInit{
       this.options = resp.response.asentamiento;
       this.formUbic.patchValue(resCop);
     });
+  }
+
+  public changeUbication(form:FormGroup){
+    this.profileService.updateUserUbicacion(this.idUser,form.value).subscribe(resp => {
+      if(resp.status === 200){
+        this.openToast = true;
+        setTimeout(() => {
+          this.openToast = false;
+        }, 3000)
+      }
+    })
   }
 }

@@ -8,5 +8,12 @@
 </ion-toolbar>
 <ion-content>
   <h1 class="text-xl text-center">Datos de envio</h1>
-  <app-form-profile [form]="formUbic" [inputsForm]="inputsUbic" [options]="options" (codeCp)="searchUbication($event)"></app-form-profile>
+  <app-form-profile
+    [form]="formUbic"
+    [inputsForm]="inputsUbic"
+    [options]="options"
+    (codeCp)="searchUbication($event)"
+    (formEmit)="changeUbication($event)"
+  ></app-form-profile>
+  <app-toas-form [isOpen]="openToast"></app-toas-form>
 </ion-content>
