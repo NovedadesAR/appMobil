@@ -4,6 +4,7 @@
       item.label
     }}</label>
     <input
+       *ngIf="item.type !== 'select'"
       [formControlName]="item.name"
       [type]="item.type"
       [id]="item.name"
@@ -12,6 +13,9 @@
       [ngClass]="{ uppercase: item.type !== 'email' }"
       (keyup)="item.name === 'cp' ? codePostalChange():undefined"
     />
+    <select *ngIf="item.type === 'select'" [formControlName]="item.name" [name]="item.name" [id]="item.name">
+      <option *ngFor="let opt of item.options" [value]="opt === 'Mujer'? 'f':'m'">{{opt}}</option>
+    </select>
   </div>
   <div>
     <button

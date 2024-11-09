@@ -50,7 +50,8 @@ export class ViewPersonalComponent implements OnInit{
     {
       label: 'Género',
       name: 'gender',
-      type: 'text'
+      type: 'select',
+      options: ['Hombre', 'Mujer']
     },
     {
       label: 'Fecha de nacimiento',
@@ -69,6 +70,7 @@ export class ViewPersonalComponent implements OnInit{
       this.idUser = decodedToken.sub;
       this.profileService.getDataPersonal(this.idUser).subscribe(resp => {
         this.user = resp;
+        console.log(this.user);
         this.personalForm.patchValue(this.user);
         this.personalForm.disable();
         this.isLoader = false;
