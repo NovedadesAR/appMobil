@@ -14,6 +14,7 @@ export class ViewEnviosComponent implements OnInit{
     private profileService: ProfileService,
     private fb:FormBuilder,
   ) { }
+  public options:string[] = [];
   private jwtHelper = new JwtHelperService();
   public formUbic:FormGroup = this.fb.group({
     cp:[''],
@@ -50,8 +51,8 @@ export class ViewEnviosComponent implements OnInit{
         cp: resp.response.cp,
         estado: resp.response.estado,
         municipio: resp.response.municipio,
-        colonia: resp.response.asentamiento[0],
       }
+      this.options = resp.response.asentamiento;
       this.formUbic.patchValue(resCop);
     });
   }
