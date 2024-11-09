@@ -49,7 +49,6 @@ export class ViewEnviosComponent implements OnInit{
   }
   public searchUbication(code:string){
     this.profileService.getDataCopomex(code).subscribe(resp => {
-      console.log(resp.response);
       const resCop = {
         cp: resp.response.cp,
         estado: resp.response.estado,
