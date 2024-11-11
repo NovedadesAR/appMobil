@@ -2,7 +2,9 @@
   <div *ngFor="let item of products" class="shadow-md">
     <div class="relative">
       <img [src]="item.imagen[0].url_imagen" [alt]="item.nombre_producto" routerLink="/products/view/{{item.id}}">
-      <button class="flex items-center justify-center py-2 px-2 absolute z-10 top-1 right-1 rounded-lg bg-white text-black shadow-md">
+      <button
+        (click)="addProductoToCart(item.id)"
+        class="flex items-center justify-center py-2 px-2 absolute z-10 top-1 right-1 rounded-lg bg-white text-black shadow-md">
         <ion-icon name="cart-outline"></ion-icon>
       </button>
     </div>

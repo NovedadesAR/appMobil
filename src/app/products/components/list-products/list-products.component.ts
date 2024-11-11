@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { ProductsCategory } from '../../interfaces/ProductsByCategory.interface';
 import { ProductByName } from '../../interfaces/ProductsByName.interface';
+import { ProfileService } from 'src/app/profile/services/profile.service';
 
 @Component({
   selector: 'app-list-products',
@@ -8,6 +9,9 @@ import { ProductByName } from '../../interfaces/ProductsByName.interface';
   styleUrl: './list-products.component.css'
 })
 export class ListProductsComponent {
+  constructor(
+    private profileService:ProfileService,
+  ){}
   @Input()
   products:ProductsCategory[] = [];
 
@@ -16,4 +20,8 @@ export class ListProductsComponent {
 
   @Input()
   type:string = '';
+
+  public addProductoToCart(id:number){
+    this.profileService.addProductToCardSer(id);
+  }
 }
