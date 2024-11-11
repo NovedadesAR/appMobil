@@ -6,6 +6,7 @@ import { RespCuenta, RespEnvio, RespPersonal, RespSeguridad, RespUpdate } from '
 import { UpdatCuenta, UpdatPersonal, UpdatSeguridad, UpdatUbicacion } from '../interfaces/UpdateProfile.interfas';
 import { RespCopomex } from '../interfaces/ResponseCopomex.interface';
 import { ResVentas } from '../interfaces/Ventas.interface';
+import { CardResponse } from '../interfaces/RespProductsCard.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -62,5 +63,17 @@ export class ProfileService {
     /** EndPoint para traer las compras **/
     public getComprasById(id: string){
       return this.http.get<ResVentas>(`${this.urlApi}ventas/${id}`)
+    }
+    /** EndPoint para traer los productos del carrito **/
+    public getProductosCarrito(id: string){
+      return this.http.post<CardResponse>(`${this.urlApi}carrito/get_card`,{id})
+    }
+    /** EndPoint para eliminar un producto del carrito **/
+    public deleteProductoCarrito(id: string, idProducto: string){
+      return this.http.delete(`${this.urlApi}carrito/${id}/${idProducto}`)
+    }
+    /** EndPoint para agregar un producto al carrito **/
+    public addProductoCarrito(id: string, data: any){
+      return this.http.post(`${this.urlApi}carrito/${id}`, data)
     }
 }
