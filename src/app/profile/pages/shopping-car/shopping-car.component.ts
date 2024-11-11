@@ -31,4 +31,11 @@ export class ShoppingCarComponent implements OnInit{
       });
     }
   }
+  public deleteProductToCart(id:number){
+    this.profileService.deleteProductByCard({id}).subscribe(res => {
+      if(res.status === 200){
+        this.getDataCard();
+      }
+    })
+  }
 }

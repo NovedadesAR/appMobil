@@ -114,10 +114,6 @@ export class ProfileService {
       id,
     });
   }
-  /** EndPoint para eliminar un producto del carrito **/
-  public deleteProductoCarrito(id: string, idProducto: string) {
-    return this.http.delete(`${this.urlApi}carrito/${id}/${idProducto}`);
-  }
   /** EndPoint para agregar un producto al carrito **/
   public addProductToCard(data: {
     cantidad: number;
@@ -142,5 +138,8 @@ export class ProfileService {
         }
       });
     }
+  }
+  deleteProductByCard(data: { id: number }) {
+    return this.http.post<ResponseBack>(`${this.urlApi}carrito/delete_card`, data)
   }
 }

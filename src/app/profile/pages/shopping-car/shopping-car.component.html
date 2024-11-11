@@ -18,7 +18,7 @@
           <li class="mb-2">Stock: {{product.product.stock}} pzas</li>
           <li class="mb-2">Cantidad: {{product.cantidad}}</li>
           <li class="mb-2">
-            <button class="text-gray-600 py-1 px-2 ring-1 ring-black ">Quitar del carrito</button>
+            <button (click)="deleteProductToCart(product.id)" class="text-gray-600 py-1 px-2 ring-1 ring-black ">Quitar del carrito</button>
           </li>
         </ul>
       </div>
