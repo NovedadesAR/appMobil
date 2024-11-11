@@ -25,12 +25,12 @@
       <div *ngFor="let venta of allShoppigs" class="px-3 py-2 rounded-md venta">
         <div>
           <div class="flex justify-between mb-3">
-            <span class="text-gray-500 font-extralight">{{checkDate(venta.fecha_venta)}}</span>
+            <span class="font-extralight">{{checkDate(venta.fecha_venta)}}</span>
             <a [href]="'https://www.fedex.com/wtrk/track/?trknbr='+venta.envio?.numero_guia" class="text-blue-800">Seguir envio</a>
           </div>
           <div *ngFor="let detalle of venta.detallesVenta" class="mb-2">
             <div class="flex gap-2 items-center">
-              <img [src]="detalle.producto.imagen[0].url_imagen" [alt]="detalle.producto.nombre_producto" class="h-20 w-16">
+              <img [src]="detalle.producto.imagen[0].url_imagen" [alt]="detalle.producto.nombre_producto" class="h-20 w-16 rounded-md">
               <div class="flex flex-col capitalize">
                 <span
                   [ngClass]="{
