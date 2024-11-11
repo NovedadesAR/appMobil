@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ProductsService } from '../../services/products.service';
 import { Imagen, Product } from '../../interfaces/Product.interface';
+import { ProfileService } from 'src/app/profile/services/profile.service';
 
 @Component({
   selector: 'app-view-product',
@@ -12,6 +13,7 @@ export class ViewProductComponent implements OnInit{
   constructor(
     private activateRouter:ActivatedRoute,
     private productService:ProductsService,
+    private profileService:ProfileService,
   ){}
   public isLoader:boolean = true;
   public id:string = '';
@@ -71,5 +73,8 @@ export class ViewProductComponent implements OnInit{
       this.routeBack = `/products/name/${this.productService.routeGet.name}`;
       console.log("va hacia el name")
     }
+  }
+  public addProductoToCart(id:number){
+    this.profileService.addProductToCardSer(id);
   }
 }
