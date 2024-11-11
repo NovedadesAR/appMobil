@@ -142,4 +142,7 @@ export class ProfileService {
   deleteProductByCard(data: { id: number }) {
     return this.http.post<ResponseBack>(`${this.urlApi}carrito/delete_card`, data)
   }
+  changeCantidad(data: { id: number, cantidad: number }) {
+    return this.http.post<ResponseBack>(`${this.urlApi}carrito/update_cantidad`, data)
+  }
 }

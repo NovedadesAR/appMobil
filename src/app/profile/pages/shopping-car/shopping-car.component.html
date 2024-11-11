@@ -16,7 +16,13 @@
           <li class="text-sm opacity-50 font-bold">${{product.product.precio}}.00</li>
           <li class="mb-2 mt-2">Descuento: {{product.product.descuento}}%</li>
           <li class="mb-2">Stock: {{product.product.stock}} pzas</li>
-          <li class="mb-2">Cantidad: {{product.cantidad}}</li>
+          <li class="mb-2">
+            <ion-select label="Cantidad" [value]="product.cantidad" (ionChange)="changeCantidad(product.cantidad,product.id)" [(ngModel)]="product.cantidad">
+              <ion-select-option [value]="item" *ngFor="let item of optionsCantidad(product.product.stock)">
+                {{item}}
+              </ion-select-option>
+            </ion-select>
+          </li>
           <li class="mb-2">
             <button (click)="deleteProductToCart(product.id)" class="text-gray-600 py-1 px-2 ring-1 ring-black ">Quitar del carrito</button>
           </li>

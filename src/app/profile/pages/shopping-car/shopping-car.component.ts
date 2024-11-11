@@ -27,7 +27,6 @@ export class ShoppingCarComponent implements OnInit{
       this.idUser = decodedToken.sub;
       this.profileService.getProductosCarrito(this.idUser).subscribe(res => {
         this.productsCard = res.detallesCarrito;
-        console.log(this.productsCard);
       });
     }
   }
@@ -36,6 +35,18 @@ export class ShoppingCarComponent implements OnInit{
       if(res.status === 200){
         this.getDataCard();
       }
+    })
+  }
+  public optionsCantidad(cantidad:number):number[]{
+    let element:number[] = [];
+    for (let i = 1; i <= cantidad; i++) {
+      element.push(i);
+    }
+    return element;
+  }
+  public changeCantidad(cantidad:number,id:number){
+    this.profileService.changeCantidad({id,cantidad}).subscribe(resp =>{
+      console.log(resp)
     })
   }
 }
