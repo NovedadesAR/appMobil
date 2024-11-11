@@ -20,12 +20,16 @@ import { ResVentas } from '../interfaces/Ventas.interface';
 import { CardResponse } from '../interfaces/RespProductsCard.interface';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { ResponseBack } from 'src/app/login/interfaces/Response-back.interface';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ProfileService {
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http: HttpClient,
+    private router:Router
+  ) {}
 
   private urlApi = environment.url_api;
   private headers = new HttpHeaders({ 'ngrok-skip-browser-warning': '1' });
@@ -123,17 +127,19 @@ export class ProfileService {
     return this.http.post<ResponseBack>(`${this.urlApi}carrito`, data);
   }
 
-  addProductToCardSer(id: string) {
+  addProductToCardSer(id: number) {
     const idUser = localStorage.getItem('token');
     if (idUser !== null) {
       const token = this.jwtHerlper.decodeToken(idUser);
       const dataCard = {
         cantidad: 1,
-        idProduct: parseInt(id),
+        idProduct: id,
         idUser: token.sub,
       };
       this.addProductToCard(dataCard).subscribe((data) => {
-        console.log(data);
+        if(data.status === 200){
+          this.router.navigate(['/car']);
+        }
       });
     }
   }
