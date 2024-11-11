@@ -16,6 +16,7 @@ export class MyShoppingComponent implements OnInit{
   private idUser!:string;
   public order:string = "ng";
   public filter:string = "ng";
+  public isLoader:boolean = true;
   public allShoppigs:ResVentasDetallesVenta[] = [];
   public backup:ResVentasDetallesVenta[] = [];
   ngOnInit(): void {
@@ -29,6 +30,11 @@ export class MyShoppingComponent implements OnInit{
       this.profileService.getComprasById(this.idUser).subscribe(res => {
         this.allShoppigs = res.detallesVenta;
         this.backup = [...res.detallesVenta];
+        if(res.status === 200){
+          setTimeout(() => {
+            this.isLoader = false;
+          }, 500);
+        }
       })
     }
   }

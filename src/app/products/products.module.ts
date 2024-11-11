@@ -27,6 +27,9 @@ import { ViewProductComponent } from './pages/view-product/view-product.componen
     IonicModule,
     ProductsRoutingModule,
     SharedModule
+  ],
+  exports:[
+    ProductNotFoundComponent,
   ]
 })
 export class ProductsModule { }
