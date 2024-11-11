@@ -5,6 +5,7 @@ import { Profile } from '../interfaces/Profile.interfac';
 import { RespCuenta, RespEnvio, RespPersonal, RespSeguridad, RespUpdate } from '../interfaces/DataProfile.interface';
 import { UpdatCuenta, UpdatPersonal, UpdatSeguridad, UpdatUbicacion } from '../interfaces/UpdateProfile.interfas';
 import { RespCopomex } from '../interfaces/ResponseCopomex.interface';
+import { ResVentas } from '../interfaces/Ventas.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -57,5 +58,9 @@ export class ProfileService {
     }
   public updateUserUbicacion(id: string, data: UpdatUbicacion) {
       return this.http.patch<RespUpdate>(`${this.urlApi}users/ubicacion/${id}`, data)
+    }
+    /** EndPoint para traer las compras **/
+    public getComprasById(id: string){
+      return this.http.get<ResVentas>(`${this.urlApi}ventas/${id}`)
     }
 }

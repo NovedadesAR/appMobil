@@ -10,7 +10,7 @@ import { ViewSecurityComponent } from './pages/view-security/view-security.compo
 import { ViewEnviosComponent } from './pages/view-envios/view-envios.component';
 import { MyShoppingComponent } from './pages/my-shopping/my-shopping.component';
 import { ShoppingCarComponent } from './pages/shopping-car/shopping-car.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FormProfileComponent } from './components/form-profile/form-profile.component';
 import { ToasFormComponent } from './components/toas-form/toas-form.component';
 import { SharedModule } from '../shared/shared.module';
@@ -33,6 +33,7 @@ import { SharedModule } from '../shared/shared.module';
     IonicModule,
     ReactiveFormsModule,
     SharedModule,
+    FormsModule
   ]
 })
 export class ProfileModule { }
