@@ -10,6 +10,7 @@ import { ProductNotFoundComponent } from './components/product-not-found/product
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '../shared/shared.module';
 import { ViewProductComponent } from './pages/view-product/view-product.component';
+import { CompraPageComponent } from './pages/compra-page/compra-page.component';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { ViewProductComponent } from './pages/view-product/view-product.componen
     ListProductsComponent,
     ProductsByNameComponent,
     ProductNotFoundComponent,
-    ViewProductComponent
+    ViewProductComponent,
+    CompraPageComponent
   ],
   imports: [
     CommonModule,

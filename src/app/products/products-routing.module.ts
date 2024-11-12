@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { ProductsByCategoryComponent } from './pages/products-by-category/products-by-category.component';
 import { ProductsByNameComponent } from './pages/products-by-name/products-by-name.component';
 import { ViewProductComponent } from './pages/view-product/view-product.component';
+import { CompraPageComponent } from './pages/compra-page/compra-page.component';
 
 const routes: Routes = [
   {
@@ -16,6 +17,10 @@ const routes: Routes = [
   {
     path:'view/:product',
     component:ViewProductComponent
+  },
+  {
+    path: 'compra',
+    component:CompraPageComponent
   }
 ];
 
