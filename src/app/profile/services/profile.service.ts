@@ -106,7 +106,7 @@ export class ProfileService {
   }
   /** EndPoint para traer las compras **/
   public getComprasById(id: string) {
-    return this.http.get<ResVentas>(`${this.urlApi}ventas/${id}`);
+    return this.http.get<ResVentas>(`${this.urlApi}ventas/${id}`,{headers:this.headers});
   }
   /** EndPoint para traer los productos del carrito **/
   public getProductosCarrito(id: string) {

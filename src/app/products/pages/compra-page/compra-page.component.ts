@@ -1,6 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
-import { Stripe, PaymentSheetEventsEnum } from '@capacitor-community/stripe';
+import {
+  Stripe,
+  PaymentSheetEventsEnum,
+  CreatePaymentSheetOption,
+} from '@capacitor-community/stripe';
+import axios from 'axios';
+import { first, firstValueFrom, lastValueFrom } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-compra-page',
@@ -8,46 +15,57 @@ import { Stripe, PaymentSheetEventsEnum } from '@capacitor-community/stripe';
   styleUrl: './compra-page.component.css',
 })
 export class CompraPageComponent {
-  constructor(private http: HttpClient) {}
-
-  async compra() {
-    console.log('entra');
-    // Escucha el evento de finalización de la hoja de pagos
-    Stripe.addListener(PaymentSheetEventsEnum.Completed, () => {
-      console.log('Pago completado');
+  constructor(private http: HttpClient) {
+    Stripe.initialize({
+      publishableKey: 'pk_test_51Os6QyP0xF5rSbalhCDVxAhQAHMJJLSQsgR9JRdjUrd1MQHuWDxzNNFP84btqgdlTAniH5bX6NEX31jctM7CGuYC00OYXvGDI7',
     });
+  }
+  private url = environment.url_api;
+  data: any = {
+    name: 'Nikhil',
+    email: 'nykz786@gmail.com',
+    amount: 100,
+    currency: 'inr'
+  };
 
-    // Solicitud al backend para obtener los datos de pago
-    this.http
-      .post<{
-        paymentIntent: string;
-        ephemeralKey: string;
-        customer: string;
-      }>('http://localhost:3000/stripe', {})
-      .subscribe(async (resp) => {
-        try {
-          console.log(resp)
-          // Prepara el PaymentSheet con las opciones necesarias
-          await Stripe.createPaymentSheet({
-            paymentIntentClientSecret: resp.paymentIntent,
-            customerId: resp.customer,
-            customerEphemeralKeySecret: resp.ephemeralKey,
-          });
 
-          // Presenta el PaymentSheet y captura el resultado
-          const result = await Stripe.presentPaymentSheet();
-          console.log(result);
-
-          if (result?.paymentResult === PaymentSheetEventsEnum.Completed) {
-            console.log('Pago realizado con éxito');
-            // Código para manejar el pago exitoso
-          } else {
-            console.log('Pago no completado', result);
-          }
-        } catch (error) {
-          console.error('Error al presentar la hoja de pago:', error);
-        }
-      });
+  httpPost(body:any) {
+    return this.http.post<any>(`${this.url}stripe`, body).pipe(first());
   }
 
+  async paymentSheet() {
+
+    try {
+      Stripe.addListener(PaymentSheetEventsEnum.Completed, () => {
+        console.log('PaymentSheetEventsEnum.Completed');
+      });
+      const resp = this.httpPost(this.data);
+      const { paymentIntent, ephemeralKey, customer } = await lastValueFrom(resp);
+      console.log('paymentIntent: ', paymentIntent);
+
+      // prepare PaymentSheet with CreatePaymentSheetOption.
+      await Stripe.createPaymentSheet({
+        paymentIntentClientSecret: paymentIntent,
+        customerId: customer,
+        customerEphemeralKeySecret: ephemeralKey,
+        merchantDisplayName: 'Technyks'
+      });
+
+      console.log('createPaymentSheet');
+      // present PaymentSheet and get result.
+      const result = await Stripe.presentPaymentSheet();
+      console.log('result: ', result);
+      if (result && result.paymentResult === PaymentSheetEventsEnum.Completed) {
+        // Happy path
+        this.splitAndJoin(paymentIntent);
+      }
+    } catch(e) {
+      console.log(e);
+    }
+  }
+  splitAndJoin(paymentIntent:any) {
+    const result = paymentIntent.split('_').slice(0, 2).join('_');
+    console.log(result);
+    return result;
+  }
 }
