@@ -46,16 +46,6 @@ export class CompraPageComponent {
     return this.dataByback;
   }
 
-  calDes(precio: number, descuento: number) {
-    let total: number = precio * this.cantidad;
-    let desc = ((precio * descuento) / 100) * this.cantidad;
-    return Math.floor(total - desc);
-  }
-  calDesByBack(precio: number, descuento: number) {
-    let desc = precio - (precio * descuento) / 100;
-    return Math.floor(desc);
-  }
-
   httpPost() {
     return this.http.post<any>(`${this.url}stripe`, this.compraProducto()).pipe(first());
   }
@@ -63,13 +53,11 @@ export class CompraPageComponent {
   async paymentSheet() {
     try {
       Stripe.addListener(PaymentSheetEventsEnum.Completed, () => {
-        console.log('PaymentSheetEventsEnum.Completed');
       });
       const resp = this.httpPost();
       const { paymentIntent, ephemeralKey, customer } = await lastValueFrom(
         resp
       );
-      console.log('paymentIntent: ', paymentIntent);
 
       await Stripe.createPaymentSheet({
         paymentIntentClientSecret: paymentIntent,
@@ -78,12 +66,9 @@ export class CompraPageComponent {
         merchantDisplayName: 'Novedades AR',
       });
 
-      console.log('createPaymentSheet');
       // present PaymentSheet and get result.
       const result = await Stripe.presentPaymentSheet();
-      console.log('result: ', result);
       if (result && result.paymentResult === PaymentSheetEventsEnum.Completed) {
-        // Happy path
         this.splitAndJoin(paymentIntent);
       }
     } catch (e) {
@@ -92,7 +77,15 @@ export class CompraPageComponent {
   }
   splitAndJoin(paymentIntent: any) {
     const result = paymentIntent.split('_').slice(0, 2).join('_');
-    console.log(result);
     return result;
+  }
+  calDes(precio: number, descuento: number) {
+    let total: number = precio * this.cantidad;
+    let desc = ((precio * descuento) / 100) * this.cantidad;
+    return Math.floor(total - desc);
+  }
+  calDesByBack(precio: number, descuento: number) {
+    let desc = precio - (precio * descuento) / 100;
+    return Math.floor(desc);
   }
 }
