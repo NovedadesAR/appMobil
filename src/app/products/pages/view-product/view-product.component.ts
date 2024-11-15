@@ -121,4 +121,8 @@ export class ViewProductComponent implements OnInit {
         return ``;
     }
   }
+  public sensuredName(name:string){
+    const words = name.split(' ');
+    return `${words[0]} ***** ${words[2]}`
+  }
 }

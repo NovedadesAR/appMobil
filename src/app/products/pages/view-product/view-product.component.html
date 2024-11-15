@@ -23,8 +23,8 @@
         <span>{{product.stock}} piezas</span>
       </div>
       <div class="flex flex-col gap-1 mt-3">
-        <button (click)="isShopping()" class="w-full bg-gray-600 text-white font-bold py-2 rounded-sm">Comprar</button>
-        <button (click)="addProductoToCart(product.id)" class="w-full bg-gray-900 text-white font-bold py-2 rounded-sm">Agregar al carrito</button>
+        <button (click)="isShopping()" class="w-full bg-gray-600 text-white font-bold py-2 rounded-md">Comprar</button>
+        <button (click)="addProductoToCart(product.id)" class="w-full bg-gray-900 text-white font-bold py-2 rounded-md">Agregar al carrito</button>
       </div>
     </section>
     <hr>
@@ -38,14 +38,15 @@
     <section class="mx-2 my-5">
       <h5 class="text-lg font-semibold mb-5">Opiniones de clientes</h5>
       <ul class="grid grid-cols-1 gap-3">
-        <li class="comentario p-3 capitalize rounded-md" *ngFor="let comentario of product.comentarios">
-          <div class="flex justify-between">
-            <h6>{{comentario.usuario}}</h6>
+        <li class="p-3 capitalize rounded-md" *ngFor="let comentario of product.comentarios">
+          <div class="flex justify-between text-sm text-gray-400">
+            <p>{{sensuredName(comentario.usuario)}}</p>
             <span>{{checkDate(comentario.fecha.toString())}}</span>
           </div>
           <div>
-            {{comentario.comentario}}
+            <span>{{comentario.comentario}}</span>
           </div>
+          <hr>
         </li>
       </ul>
     </section>
