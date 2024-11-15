@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ProductsService } from '../../services/products.service';
 import { Imagen, Product } from '../../interfaces/Product.interface';
 import { ProfileService } from 'src/app/profile/services/profile.service';
@@ -13,7 +13,8 @@ export class ViewProductComponent implements OnInit {
   constructor(
     private activateRouter: ActivatedRoute,
     private productService: ProductsService,
-    private profileService: ProfileService
+    private profileService: ProfileService,
+    private router:Router,
   ) {}
   public isToastOpen: boolean = false;
   public message: string = '';
@@ -38,7 +39,6 @@ export class ViewProductComponent implements OnInit {
   };
 
   ngOnInit(): void {
-    console.log(this.productService.routeGet);
     this.getProductById();
     this.routeToNavigation();
   }
@@ -78,5 +78,16 @@ export class ViewProductComponent implements OnInit {
     const message = await this.profileService.addProductToCardSer(id);
     this.message = message;
     this.isToastOpen = true;
+  }
+
+  public isShopping(){
+    const token = localStorage.getItem('token');
+    if(!token){
+      this.message = "Inicia sesion para poder comprar";
+      this.isToastOpen = true;
+    }
+    else{
+      this.router.navigate(['/products/compra']);
+    }
   }
 }
