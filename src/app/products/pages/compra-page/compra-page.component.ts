@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import {
   Stripe,
@@ -10,13 +10,14 @@ import { first, firstValueFrom, lastValueFrom } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { CompraProducto } from '../../interfaces/Compra.interface';
 import { ProductsService } from '../../services/products.service';
+import { Product } from '../../interfaces/Product.interface';
 
 @Component({
   selector: 'app-compra-page',
   templateUrl: './compra-page.component.html',
   styleUrl: './compra-page.component.css',
 })
-export class CompraPageComponent {
+export class CompraPageComponent implements OnInit{
   constructor(
     private http: HttpClient,
     private productService:ProductsService,
@@ -30,12 +31,25 @@ export class CompraPageComponent {
   private jwtHelper = new JwtHelperService();
   private cantidad: number = 0;
   private dataByback:CompraProducto[] = [];
-
+  public product!:Product;
+  ngOnInit(): void {
+    this.getDataProduct();
+  }
+  private  getDataProduct(){
+    const idProduct = localStorage.getItem('product');
+    if(idProduct){
+      this.productService.getProductById(idProduct).subscribe(res => {
+        this.product = res;
+        console.log(res);
+      });
+    }
+  }
   async compraProducto() {
     const idUser = localStorage.getItem('token');
     if (idUser !== null) {
       const token = this.jwtHelper.decodeToken(idUser);
       const product = await lastValueFrom(this.productService.getProductById('56'));
+      console.log(product);
       const data = {
         id: product!.id,
         title: 'Playera',

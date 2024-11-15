@@ -1,5 +1,15 @@
-<ion-card-content>
+<ion-toolbar>
+  <ion-buttons>
+    <ion-button>
+      <ion-icon name="arrow-back-outline"></ion-icon>
+      <ion-title class="capitalize text-sm">Compra</ion-title>
+    </ion-button>
+  </ion-buttons>
+</ion-toolbar>
+<ion-content class="ion-padding">
   <p>compra-page works!</p>
-  <ion-button expand="block" class="ion-margin-top" (click)="paymentSheet()">Payment Sheet</ion-button>
-  <ion-button expand="block" class="ion-margin-top" (click)="compraProducto()">Prueba </ion-button>
-</ion-card-content>
+  <div class="flex justify-evenly gap-5">
+    <button class="w-full px-3 py-2 bg-red-900 text-white rounded-md">Cancelar</button>
+    <button class="w-full px-3 py-2 bg-black text-white rounded-md" (click)="paymentSheet()">Confirmar compra</button>
+  </div>
+</ion-content>
