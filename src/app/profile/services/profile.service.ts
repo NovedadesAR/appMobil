@@ -21,15 +21,13 @@ import { CardResponse } from '../interfaces/RespProductsCard.interface';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { ResponseBack } from 'src/app/login/interfaces/Response-back.interface';
 import { Router } from '@angular/router';
+import { lastValueFrom } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ProfileService {
-  constructor(
-    private http: HttpClient,
-    private router:Router
-  ) {}
+  constructor(private http: HttpClient, private router: Router) {}
 
   private urlApi = environment.url_api;
   private headers = new HttpHeaders({ 'ngrok-skip-browser-warning': '1' });
@@ -106,7 +104,9 @@ export class ProfileService {
   }
   /** EndPoint para traer las compras **/
   public getComprasById(id: string) {
-    return this.http.get<ResVentas>(`${this.urlApi}ventas/${id}`,{headers:this.headers});
+    return this.http.get<ResVentas>(`${this.urlApi}ventas/${id}`, {
+      headers: this.headers,
+    });
   }
   /** EndPoint para traer los productos del carrito **/
   public getProductosCarrito(id: string) {
@@ -123,7 +123,7 @@ export class ProfileService {
     return this.http.post<ResponseBack>(`${this.urlApi}carrito`, data);
   }
 
-  addProductToCardSer(id: number) {
+  async addProductToCardSer(id: number) {
     const idUser = localStorage.getItem('token');
     if (idUser !== null) {
       const token = this.jwtHerlper.decodeToken(idUser);
@@ -132,17 +132,27 @@ export class ProfileService {
         idProduct: id,
         idUser: token.sub,
       };
-      this.addProductToCard(dataCard).subscribe((data) => {
-        if(data.status === 200){
-          this.router.navigate(['/car']);
-        }
-      });
+      const resp = await lastValueFrom(this.addProductToCard(dataCard));
+      if (resp.status === 200) {
+        return 'Producto agregado al carrito';
+      } else if (resp.status === 409) {
+        return 'Ya se encuentra en el carrito';
+      } else {
+        return 'Ha ocurrido un error';
+      }
     }
+    return 'Inicia sesion para agregar al carrito';
   }
   deleteProductByCard(data: { id: number }) {
-    return this.http.post<ResponseBack>(`${this.urlApi}carrito/delete_card`, data)
+    return this.http.post<ResponseBack>(
+      `${this.urlApi}carrito/delete_card`,
+      data
+    );
   }
-  changeCantidad(data: { id: number, cantidad: number }) {
-    return this.http.post<ResponseBack>(`${this.urlApi}carrito/update_cantidad`, data)
+  changeCantidad(data: { id: number; cantidad: number }) {
+    return this.http.post<ResponseBack>(
+      `${this.urlApi}carrito/update_cantidad`,
+      data
+    );
   }
 }
