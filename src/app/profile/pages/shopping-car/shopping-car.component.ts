@@ -53,7 +53,15 @@ export class ShoppingCarComponent implements OnInit{
   }
   public changeCantidad(cantidad:number,id:number){
     this.profileService.changeCantidad({id,cantidad}).subscribe(resp =>{
-      console.log(resp)
     })
+  }
+
+  public changePrice(){
+    let price:number = 0;
+    this.productsCard.forEach(item => {
+      const descuento = item.product.precio * item.product.descuento / 100;
+      price += (item.product.precio - descuento) * (item.cantidad);
+    });
+    return price;
   }
 }
