@@ -24,7 +24,6 @@ export class SliderProductsComponent {
   }
   public async addProductoToCart(id:number){
     const message = await this.profileService.addProductToCardSer(id);
-    console.log(message);
     this.message = message;
     this.isToastOpen = true;
   }
