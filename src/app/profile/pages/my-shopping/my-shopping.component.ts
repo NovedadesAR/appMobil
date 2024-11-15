@@ -22,6 +22,9 @@ export class MyShoppingComponent implements OnInit{
   ngOnInit(): void {
     this.getComopras();
   }
+  ionViewWillEnter(){
+    this.getComopras();
+  }
   public getComopras(){
     const token = localStorage.getItem('token');
     if(token){
