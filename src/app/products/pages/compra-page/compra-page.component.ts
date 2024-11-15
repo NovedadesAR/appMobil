@@ -6,10 +6,10 @@ import {
   PaymentSheetEventsEnum,
   CreatePaymentSheetOption,
 } from '@capacitor-community/stripe';
-import axios from 'axios';
 import { first, firstValueFrom, lastValueFrom } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { CompraProducto } from '../../interfaces/Compra.interface';
+import { ProductsService } from '../../services/products.service';
 
 @Component({
   selector: 'app-compra-page',
@@ -17,7 +17,10 @@ import { CompraProducto } from '../../interfaces/Compra.interface';
   styleUrl: './compra-page.component.css',
 })
 export class CompraPageComponent {
-  constructor(private http: HttpClient) {
+  constructor(
+    private http: HttpClient,
+    private productService:ProductsService,
+  ) {
     Stripe.initialize({
       publishableKey:
         'pk_test_51Os6QyP0xF5rSbalhCDVxAhQAHMJJLSQsgR9JRdjUrd1MQHuWDxzNNFP84btqgdlTAniH5bX6NEX31jctM7CGuYC00OYXvGDI7',
@@ -28,18 +31,20 @@ export class CompraPageComponent {
   private cantidad: number = 0;
   private dataByback:CompraProducto[] = [];
 
-  compraProducto() {
+  async compraProducto() {
     const idUser = localStorage.getItem('token');
     if (idUser !== null) {
       const token = this.jwtHelper.decodeToken(idUser);
+      const product = await this.productService.getProductById(token.id).toPromise();
       const data = {
-        id: 56,
+        id: product!.id,
         title: 'Playera',
         precio: this.calDesByBack(1000, 10),
         idUser: token.sub,
         cantidad: 1,
         idCard: 'null',
       };
+      console.log(product);
       console.log(data)
       this.dataByback.push(data);
     }
@@ -66,7 +71,6 @@ export class CompraPageComponent {
         merchantDisplayName: 'Novedades AR',
       });
 
-      // present PaymentSheet and get result.
       const result = await Stripe.presentPaymentSheet();
       if (result && result.paymentResult === PaymentSheetEventsEnum.Completed) {
         this.splitAndJoin(paymentIntent);
