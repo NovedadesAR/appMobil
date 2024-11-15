@@ -10,7 +10,7 @@
     <div class="flex w-full gap-5 items-center py-3 px-4">
       <div>
         <img
-          src="../../../../assets/icon/image.png"
+          [src]="photo !== ''?photo :'../../../../assets/icon/image.png'"
           alt="user"
           class="w-28 rounded-full"
         />

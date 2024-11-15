@@ -48,22 +48,22 @@ export class ProfileService {
   /** Metodos para obtener la informacion de cada seccion */
   public getDataPersonal(id: string) {
     return this.http.get<RespPersonal>(
-      `${this.urlApi}users/profile/personal/${id}`
+      `${this.urlApi}users/profile/personal/${id}`,{headers:this.headers}
     );
   }
   public getDataAccount(id: string) {
     return this.http.get<RespCuenta>(
-      `${this.urlApi}users/profile/cuenta/${id}`
+      `${this.urlApi}users/profile/cuenta/${id}`,{headers:this.headers}
     );
   }
   public getDataSegurity(id: string) {
     return this.http.get<RespSeguridad>(
-      `${this.urlApi}users/profile/seguridad/${id}`
+      `${this.urlApi}users/profile/seguridad/${id}`,{headers:this.headers}
     );
   }
   public getUbication(id: string) {
     return this.http.get<RespEnvio>(
-      `${this.urlApi}users/profile/ubicacion/${id}`
+      `${this.urlApi}users/profile/ubicacion/${id}`,{headers:this.headers}
     );
   }
   getDataCopomex(cp: string) {
