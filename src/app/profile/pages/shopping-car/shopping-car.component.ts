@@ -19,7 +19,8 @@ export class ShoppingCarComponent implements OnInit{
   private jwtHelper = new JwtHelperService();
   private idUser:string = '';
   public productsCard:DetallesCarrito[] = [];
-
+  public message:string = '';
+  public isOpen:boolean = false;
   ngOnInit(): void {
     this.getDataCard();
   }
@@ -38,6 +39,8 @@ export class ShoppingCarComponent implements OnInit{
     this.profileService.deleteProductByCard({id}).subscribe(res => {
       if(res.status === 200){
         this.getDataCard();
+        this.message = "Eliminado exitosamente";
+        this.isOpen = true;
       }
     })
   }
