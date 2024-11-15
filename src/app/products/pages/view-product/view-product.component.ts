@@ -87,6 +87,7 @@ export class ViewProductComponent implements OnInit {
       this.isToastOpen = true;
     }
     else{
+      localStorage.setItem('product', this.id);
       this.router.navigate(['/products/compra']);
     }
   }

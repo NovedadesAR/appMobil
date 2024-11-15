@@ -22,7 +22,7 @@ const routes: Routes = [
   {
     path: 'compra',
     component:CompraPageComponent,
-    //canMatch:[compraGuard]
+    canMatch:[compraGuard]
   }
 ];
 
