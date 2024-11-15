@@ -113,6 +113,7 @@ export class CompraPageComponent implements OnInit {
         customerId: customer,
         customerEphemeralKeySecret: ephemeralKey,
         merchantDisplayName: 'Novedades AR',
+        countryCode:'MX',
       });
 
       const result = await Stripe.presentPaymentSheet();
