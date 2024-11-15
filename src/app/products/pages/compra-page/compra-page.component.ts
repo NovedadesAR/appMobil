@@ -35,7 +35,7 @@ export class CompraPageComponent {
     const idUser = localStorage.getItem('token');
     if (idUser !== null) {
       const token = this.jwtHelper.decodeToken(idUser);
-      const product = await this.productService.getProductById(token.id).toPromise();
+      const product = await lastValueFrom(this.productService.getProductById('56'));
       const data = {
         id: product!.id,
         title: 'Playera',
@@ -44,8 +44,6 @@ export class CompraPageComponent {
         cantidad: 1,
         idCard: 'null',
       };
-      console.log(product);
-      console.log(data)
       this.dataByback.push(data);
     }
     return this.dataByback;
