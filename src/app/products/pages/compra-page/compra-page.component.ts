@@ -11,71 +11,103 @@ import { environment } from 'src/environments/environment';
 import { CompraProducto } from '../../interfaces/Compra.interface';
 import { ProductsService } from '../../services/products.service';
 import { Product } from '../../interfaces/Product.interface';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-compra-page',
   templateUrl: './compra-page.component.html',
   styleUrl: './compra-page.component.css',
 })
-export class CompraPageComponent implements OnInit{
+export class CompraPageComponent implements OnInit {
   constructor(
     private http: HttpClient,
-    private productService:ProductsService,
+    private productService: ProductsService,
+    private router:Router,
   ) {
     Stripe.initialize({
       publishableKey:
         'pk_test_51Os6QyP0xF5rSbalhCDVxAhQAHMJJLSQsgR9JRdjUrd1MQHuWDxzNNFP84btqgdlTAniH5bX6NEX31jctM7CGuYC00OYXvGDI7',
     });
   }
+  public cantidad: number = 1;
+  public isOpen: boolean = false;
   private url = environment.url_api;
   private jwtHelper = new JwtHelperService();
-  private cantidad: number = 0;
-  private dataByback:CompraProducto[] = [];
-  public product!:Product;
+  private dataByback: CompraProducto[] = [];
+  private idProducto: string = '';
+  public product: Product = {
+    id: 0,
+    nombre_producto: '',
+    precio: 0,
+    descripccion: '',
+    stock: 0,
+    categoria: '',
+    rating: 0,
+    descuento: 0,
+    status: '',
+    tipo: '',
+    imagen: [
+      {
+        id: 0,
+        url_imagen: '',
+      },
+    ],
+    comentarios: [],
+  };
   ngOnInit(): void {
     this.getDataProduct();
   }
-  private  getDataProduct(){
+  private getDataProduct() {
     const idProduct = localStorage.getItem('product');
-    if(idProduct){
-      this.productService.getProductById(idProduct).subscribe(res => {
+    if (idProduct) {
+      this.idProducto = idProduct;
+      this.productService.getProductById(idProduct).subscribe((res) => {
         this.product = res;
-        console.log(res);
       });
     }
+  }
+  public optionsCantidad(cantidad: number): number[] {
+    let element: number[] = [];
+    for (let i = 1; i <= cantidad; i++) {
+      element.push(i);
+    }
+    return element;
+  }
+  public changePrice() {
+    const descuento = (this.product.precio * this.product.descuento) / 100;
+    return (this.product.precio - descuento) * this.cantidad;
   }
   async compraProducto() {
     const idUser = localStorage.getItem('token');
     if (idUser !== null) {
       const token = this.jwtHelper.decodeToken(idUser);
-      const product = await lastValueFrom(this.productService.getProductById('56'));
-      console.log(product);
+      const product = await lastValueFrom(
+        this.productService.getProductById(this.idProducto)
+      );
       const data = {
-        id: product!.id,
-        title: 'Playera',
-        precio: this.calDesByBack(1000, 10),
+        id: product.id,
+        title: product.nombre_producto,
+        precio: product.precio,
         idUser: token.sub,
-        cantidad: 1,
+        cantidad: this.cantidad,
         idCard: 'null',
       };
       this.dataByback.push(data);
     }
     return this.dataByback;
   }
-
-  httpPost() {
-    return this.http.post<any>(`${this.url}stripe`, this.compraProducto()).pipe(first());
-  }
-
   async paymentSheet() {
     try {
       Stripe.addListener(PaymentSheetEventsEnum.Completed, () => {
+        this.isOpen = true;
+        setTimeout(() => {
+          localStorage.removeItem('product')
+          this.router.navigate(['/my-shopping'])
+        }, 2000);
       });
-      const resp = this.httpPost();
-      const { paymentIntent, ephemeralKey, customer } = await lastValueFrom(
-        resp
-      );
-
+      const { paymentIntent, ephemeralKey, customer } = await lastValueFrom(this.http.post<any>(`${this.url}stripe`, await this.compraProducto()))
+      this.dataByback = [];
+      console.log(this.dataByback)
       await Stripe.createPaymentSheet({
         paymentIntentClientSecret: paymentIntent,
         customerId: customer,
@@ -94,14 +126,5 @@ export class CompraPageComponent implements OnInit{
   splitAndJoin(paymentIntent: any) {
     const result = paymentIntent.split('_').slice(0, 2).join('_');
     return result;
-  }
-  calDes(precio: number, descuento: number) {
-    let total: number = precio * this.cantidad;
-    let desc = ((precio * descuento) / 100) * this.cantidad;
-    return Math.floor(total - desc);
-  }
-  calDesByBack(precio: number, descuento: number) {
-    let desc = precio - (precio * descuento) / 100;
-    return Math.floor(desc);
   }
 }
