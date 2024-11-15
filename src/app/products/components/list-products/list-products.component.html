@@ -14,3 +14,9 @@
     </div>
   </div>
 </section>
+<ion-toast
+    [isOpen]="isToastOpen"
+    [message]="message"
+    [duration]="5000"
+    (didDismiss)="isToastOpen = false"
+  ></ion-toast>

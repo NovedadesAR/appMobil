@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ProductsService, Route } from '../../services/products.service';
 import { ProductsCategory } from '../../interfaces/ProductsByCategory.interface';
+import { ProfileService } from 'src/app/profile/services/profile.service';
 
 @Component({
   selector: 'app-products-by-category',
@@ -11,7 +12,8 @@ import { ProductsCategory } from '../../interfaces/ProductsByCategory.interface'
 export class ProductsByCategoryComponent implements OnInit {
   constructor(
     private activateRouter: ActivatedRoute,
-    private productsService: ProductsService
+    private productsService: ProductsService,
+    private profileService:ProfileService
   ) {}
 
   public products: ProductsCategory[] = [];
@@ -91,4 +93,5 @@ export class ProductsByCategoryComponent implements OnInit {
         return '';
     }
   }
+
 }

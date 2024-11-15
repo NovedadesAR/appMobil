@@ -16,10 +16,15 @@ export class SliderProductsComponent {
   @Input()
   public isLoader:boolean = true;
 
+  public isToastOpen:boolean = false;
+  public message:string = '';
+
   public calDesc(price:number, discount:number):number{
     return price - (price * (discount / 100));
   }
-  public addProductoToCart(id:number){
-    this.profileService.addProductToCardSer(id);
+  public async addProductoToCart(id:number){
+    const message = await this.profileService.addProductToCardSer(id);
+    this.message = message;
+    this.isToastOpen = true;
   }
 }

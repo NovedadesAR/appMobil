@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ProfileService } from '../../services/profile.service';
 import { DetallesCarrito } from '../../interfaces/RespProductsCard.interface';
 import { JwtHelperService } from '@auth0/angular-jwt';
@@ -12,6 +12,10 @@ export class ShoppingCarComponent implements OnInit{
   constructor(
     private profileService:ProfileService,
   ) { }
+  ionViewWillEnter(){
+    console.log("se llama")
+    this.getDataCard();
+  }
   private jwtHelper = new JwtHelperService();
   private idUser:string = '';
   public productsCard:DetallesCarrito[] = [];

@@ -6,22 +6,24 @@ import { ProfileService } from 'src/app/profile/services/profile.service';
 @Component({
   selector: 'app-list-products',
   templateUrl: './list-products.component.html',
-  styleUrl: './list-products.component.css'
+  styleUrl: './list-products.component.css',
 })
 export class ListProductsComponent {
-  constructor(
-    private profileService:ProfileService,
-  ){}
+  constructor(private profileService: ProfileService) {}
   @Input()
-  products:ProductsCategory[] = [];
+  products: ProductsCategory[] = [];
 
   @Input()
-  productsByName:ProductByName[] = [];
+  productsByName: ProductByName[] = [];
 
   @Input()
-  type:string = '';
+  type: string = '';
 
-  public addProductoToCart(id:number){
-    this.profileService.addProductToCardSer(id);
+  public isToastOpen: boolean = false;
+  public message: string = '';
+  public async addProductoToCart(id: number) {
+    const message = await this.profileService.addProductToCardSer(id);
+    this.message = message;
+    this.isToastOpen = true;
   }
 }
