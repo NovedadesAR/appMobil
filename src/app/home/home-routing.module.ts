@@ -23,11 +23,13 @@ const routes: Routes = [
       },
       {
         path:'my-shopping',
-        component:MyShoppingComponent
+        component:MyShoppingComponent,
+        canMatch:[accountMatchGuard],
       },
       {
         path:'car',
-        component:ShoppingCarComponent
+        component:ShoppingCarComponent,
+        canMatch:[accountMatchGuard],
       },
       {
         path:'',
