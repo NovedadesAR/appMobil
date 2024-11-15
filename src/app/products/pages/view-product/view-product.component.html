@@ -41,7 +41,7 @@
         <li class="comentario p-3 capitalize rounded-md" *ngFor="let comentario of product.comentarios">
           <div class="flex justify-between">
             <h6>{{comentario.usuario}}</h6>
-            <span>{{comentario.fecha}}</span>
+            <span>{{checkDate(comentario.fecha.toString())}}</span>
           </div>
           <div>
             {{comentario.comentario}}

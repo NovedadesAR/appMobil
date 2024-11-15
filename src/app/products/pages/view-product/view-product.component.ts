@@ -90,4 +90,35 @@ export class ViewProductComponent implements OnInit {
       this.router.navigate(['/products/compra']);
     }
   }
+  public checkDate(date:string){
+    const data = date.split('-');
+    switch(data[1]){
+      case '01':
+        return `${data[2]} Enero de ${data[0]}`;
+      case '02':
+        return `${data[2]} Febrero de ${data[0]}`;
+      case '03':
+        return `${data[2]} Marzo de ${data[0]}`;
+      case '04':
+        return `${data[2]} Abril de ${data[0]}`;
+      case '05':
+        return `${data[2]} Mayo de ${data[0]}`;
+      case '06':
+        return `${data[2]} Junio de ${data[0]}`;
+      case '07':
+        return `${data[2]} Julio de ${data[0]}`;
+      case '08':
+        return `${data[2]} Agosto de ${data[0]}`;
+      case '09':
+        return `${data[2]} Septiembre de ${data[0]}`;
+      case '10':
+        return `${data[2]} Octubre de ${data[0]}`;
+      case '11':
+        return `${data[2]} Noviembre de ${data[0]}`;
+      case '12':
+        return `${data[2]} Diciembre de ${data[0]}`;
+      default:
+        return ``;
+    }
+  }
 }
