@@ -100,13 +100,13 @@
     <div class="">
       <p-dialog
       header="Encuenta de satisfaccion"
-      [visible]="true"
+      [(visible)]="visible"
       [modal]="true"
       [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }"
       [style]="{ width: '50vw' }"
       [draggable]="false"
       [resizable]="false">
-          <form class="flex flex-col gap-5">
+          <form class="flex flex-col gap-5" [formGroup]="formCal">
             <div class="flex flex-col">
               <label for="rating">¿Qué tan satisfecho estás con tu experiencia general de compra en la aplicación?</label>
               <p-rating [cancel]="false" formControlName="expCompra"/>
@@ -120,7 +120,7 @@
               <p-rating [cancel]="false" formControlName="satOptimizacion"/>
             </div>
             <div class="flex justify-end">
-              <button class="bg-blue-600 rounded-md border-none text-white px-3 py-2 font-bold text-md cursor-pointer">
+              <button [disabled]="isSend" (click)="rating()" class="bg-blue-600 rounded-md border-none text-white px-3 py-2 font-bold text-md cursor-pointer">
                 Enviar
               </button>
             </div>
