@@ -13,7 +13,8 @@ import { TitleCategoryComponent } from './components/title-category/title-catego
 import { LoaderComponent } from './components/loader/loader.component';
 import { ErrorPageComponent } from './components/error-page/error-page.component';
 import { ProfileModule } from '../profile/profile.module';
-
+import { DialogModule } from 'primeng/dialog';
+import { RatingModule } from 'primeng/rating';
 
 @NgModule({
   imports: [
@@ -23,7 +24,9 @@ import { ProfileModule } from '../profile/profile.module';
     HomePageRoutingModule,
     CarouselModule,
     ReactiveFormsModule,
-    ProfileModule
+    ProfileModule,
+    DialogModule,
+    RatingModule
 ],
   declarations: [
     HomePage,
