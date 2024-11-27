@@ -72,9 +72,18 @@ jobs:
         - name: Checkout code
           uses: actions/checkout@v3
       
+                # 2. Configurar Node.js
+        - name: Set up Node.js
+          uses: actions/setup-node@v3
+          with:
+             node-version: '20'
       # 2. Instalar dependencias
         - name: Install dependencies
           run: npm install
+
+                # 4. Instalar Ionic CLI
+        - name: Install Ionic CLI
+          run: npm install -g @ionic/cli
 
       # 3. Construir la aplicación para producción
         - name: Build Ionic App
